@@ -39,8 +39,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: Constants.appName,
       theme: isDark ? Constants.darkTheme : Constants.lightTheme,
-      // home: Trending(),
-      home: WelcomeScreen(),
+      home: MainScreen(),
+      // home: WelcomeScreen(),
     );
   }
 }

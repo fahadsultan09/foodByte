@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodbyte/screens/Profile.dart';
 
 import 'package:speech_recognition/speech_recognition.dart';
 
@@ -17,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         controller: _pageController,
@@ -27,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
           Home(),
           Home(),
           Home(),
-          Home(),
+          profilePage(),
         ],
       ),
 

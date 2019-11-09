@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodbyte/Utils/categories.dart';
 import 'package:foodbyte/Utils/friends.dart';
 import 'package:foodbyte/Utils/restaurants.dart';
+import 'package:foodbyte/screens/scratchCard.dart';
 import 'package:foodbyte/screens/trending.dart';
 import 'package:foodbyte/widgets/slide_item.dart';
 import 'package:speech_recognition/speech_recognition.dart';
@@ -41,78 +42,137 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      appBar: PreferredSize(
-        child: Padding(
-          padding: EdgeInsets.only(top: 30.0, left: 10.0, right: 10.0),
-          child: Card(
-            elevation: 6.0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5.0),
+      appBar: AppBar(
+        title: new Text("Food Byte"),
+        centerTitle: true,
+        ),
+        drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              accountEmail: new Text("RDJ@gmail.com",style: TextStyle(color: Colors.white)),
+              accountName: new Text("Robert Downey Jr",style: TextStyle(color: Colors.white,fontSize: 20.0)),       
+              currentAccountPicture:  new CircleAvatar(
+                   backgroundImage: AssetImage('assets/RDJ.png'),
                 ),
-              ),
-              child: TextField(
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.black,
-                ),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(10.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                    borderSide: BorderSide(color: Colors.white,),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white,),
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  hintText: searchText,
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Colors.black,
-                  ),
-                  suffixIcon: IconButton(icon: Icon(mic_icon,color: Colors.red,),
-                  color: Colors.black,
-                  onPressed: (){
-                    setState(() {
-                     if(searchText == "Search.."){
-                       searchText = "Listening..";
-                       mic_icon = Icons.mic_off;
-
-                       if(isAvailable && !isListening){
-                         _speechRecognition.listen(locale: "en_US").then((result){
-                             
-                         });
-                       }
-                     } 
-                     else{
-                       searchText = "Search..";
-                       mic_icon = Icons.mic;
-                       if(isListening){
-                         _speechRecognition.stop().then((result)=>setState(()=>isListening = result));
-                       }
-                     }
-                    }); 
-                  },
-                  ),
-                  hintStyle: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
-                ),
-                maxLines: 1,
-                controller: _searchControl,
+            
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                  image: new AssetImage("assets/background.jpg"),
+                  fit: BoxFit.fill
+                )
               ),
             ),
-          ),
-        ),
-        preferredSize: Size(
-          MediaQuery.of(context).size.width,
-          60.0,
+            new ListTile(
+              title: new Text("Page One"),
+              trailing: new Icon(Icons.arrow_upward),
+              onTap: () {
+                // Navigator.of(context).pop();
+                // Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("First Page")));
+              }
+            ),
+            new ListTile(
+              title: new Text("Wallet"),
+  //             trailing: new Container(
+   
+  //               // child: new Text("32423",style: TextStyle(color: Colors.blueAccent,fontSize: 20.0),),
+  //               decoration: BoxDecoration(
+  //               color: Colors.blue[100],
+  //   border: Border.all(
+  //     color: Colors.blue[200],
+  //     width: 1.0
+  //   ),
+  //   borderRadius: BorderRadius.all(
+  //       Radius.circular(5.0) //         <--- border radius here
+  //   ),
+  // ),
+  //             ),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new scratchCard()));
+              }
+            ),
+            new Divider(),
+            new ListTile(
+              title: new Text("Cancel"),
+              trailing: new Icon(Icons.cancel),
+              onTap: () => Navigator.pop(context),
+            ),
+          ],
         ),
       ),
+      // appBar: PreferredSize(
+      //   child: Padding(
+      //     padding: EdgeInsets.only(top: 30.0, left: 10.0, right: 10.0),
+      //     child: Card(
+      //       elevation: 6.0,
+      //       child: Container(
+      //         decoration: BoxDecoration(
+      //           color: Colors.white,
+      //           borderRadius: BorderRadius.all(
+      //             Radius.circular(5.0),
+      //           ),
+      //         ),
+      //         child: TextField(
+      //           style: TextStyle(
+      //             fontSize: 15.0,
+      //             color: Colors.black,
+      //           ),
+      //           decoration: InputDecoration(
+      //             contentPadding: EdgeInsets.all(10.0),
+      //             border: OutlineInputBorder(
+      //               borderRadius: BorderRadius.circular(5.0),
+      //               borderSide: BorderSide(color: Colors.white,),
+      //             ),
+      //             enabledBorder: OutlineInputBorder(
+      //               borderSide: BorderSide(color: Colors.white,),
+      //               borderRadius: BorderRadius.circular(5.0),
+      //             ),
+      //             hintText: searchText,
+      //             prefixIcon: Icon(
+      //               Icons.search,
+      //               color: Colors.black,
+      //             ),
+      //             suffixIcon: IconButton(icon: Icon(mic_icon,color: Colors.red,),
+      //             color: Colors.black,
+      //             onPressed: (){
+      //               setState(() {
+      //                if(searchText == "Search.."){
+      //                  searchText = "Listening..";
+      //                  mic_icon = Icons.mic_off;
+
+      //                  if(isAvailable && !isListening){
+      //                    _speechRecognition.listen(locale: "en_US").then((result){
+                             
+      //                    });
+      //                  }
+      //                } 
+      //                else{
+      //                  searchText = "Search..";
+      //                  mic_icon = Icons.mic;
+      //                  if(isListening){
+      //                    _speechRecognition.stop().then((result)=>setState(()=>isListening = result));
+      //                  }
+      //                }
+      //               }); 
+      //             },
+      //             ),
+      //             hintStyle: TextStyle(
+      //               fontSize: 15.0,
+      //               color: Colors.black,
+      //             ),
+      //           ),
+      //           maxLines: 1,
+      //           controller: _searchControl,
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      //   preferredSize: Size(
+      //     MediaQuery.of(context).size.width,
+      //     60.0,
+      //   ),
+      // ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(10.0,0,10.0,0),
         child: ListView(

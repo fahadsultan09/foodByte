@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 import 'package:foodbyte/screens/main_screen.dart';
+import 'package:foodbyte/sharedPreferences.dart';
 
 
-class WelcomeScreen extends StatelessWidget {
-  // static final String path = "lib/src/pages/login/auth2.dart";
-  // final String backImg = meal;
+class WelcomeScreen extends StatefulWidget {
+
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  @override
+  void initState() { 
+    super.initState();
+    setWalletAmount(0);
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
