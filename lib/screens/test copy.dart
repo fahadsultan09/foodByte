@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/Utils/Const.dart';
 import 'package:foodbyte/Utils/restaurants.dart';
-import 'package:foodbyte/Utils/restaurants.dart' as prefix0;
-import 'package:foodbyte/widgets/trending_item.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 
 
-class Trending extends StatefulWidget {
+class TestClass extends StatefulWidget {
   @override
-  _TrendingState createState() => _TrendingState();
+  _TestClassState createState() => new _TestClassState();
 }
 
-class _TrendingState extends State<Trending> {
-  final TextEditingController _searchControl = new TextEditingController();
+class _TestClassState extends State<TestClass> {
+  TextEditingController editingController = TextEditingController();
   IconData mic_icon = Icons.mic;
   String searchText = "Search..";
   SpeechRecognition _speechRecognition;
   bool isAvailable = false;
   bool isListening = false;
-  List filterRestaurant = new List();
-  
+  final duplicateItems = List.generate(restaurants.length, (i) => restaurants[i]);
+  var items = List();
   void initSpeedRecognition(){
     _speechRecognition = SpeechRecognition();
     _speechRecognition.setAvailabilityHandler((bool result)=> setState(()=>isAvailable = result));
@@ -29,51 +27,81 @@ class _TrendingState extends State<Trending> {
     _speechRecognition.activate().then((result)=>setState(()=>isAvailable = result));
    
   }
+
   @override
-  void initState() { 
+  void initState() {
+    items.addAll(duplicateItems);
     super.initState();
     initSpeedRecognition();
   }
 
+  void filterSearchResults(String query) {
+    List dummySearchList = List();
+    dummySearchList.addAll(duplicateItems);
+    if(query.isNotEmpty) {
+      List dummyListData = List();
+
+      // for(var item in dummySearchList){
+      //   if(item.contains(query)){
+      //       dummyListData.add(item);
+            
+      //   }
+      // }
+
+      for(var i = 0;i<dummySearchList.length;i++){
+
+           if(dummySearchList[i]["title"].contains(query)){
+            dummyListData.add(dummySearchList[i]);
+            
+        }
+      }
+      // dummySearchList.forEach((item) {
+      //   if(item.contains(query)) {
+          
+      //     dummyListData.add(item);
+      //   }
+      // }
+      
+      // );
+      setState(() {
+        items.clear();
+        items.addAll(dummyListData);
+        // _list.clear();
+        // for(var i = 0 ;i<_index.length;i++){
+        //     _list = restaurants[i];
+        // }
+      });
+      return;
+    } else {
+      setState(() {
+        items.clear();
+        items.addAll(duplicateItems);
+        //  _list.clear();
+        // for(var i = 0 ;i<_index.length;i++){
+        //     _list = restaurants[i];
+        // }
+      });
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: Text("Trending Restaurants"),
+    return new Scaffold(
+      appBar: new AppBar(
         centerTitle: true,
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios
-          ),
-          onPressed: ()=>Navigator.pop(context),
-        ),
+        title: new Text("Trending Restaurants"),
       ),
-
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(10.0,0,10.0,0),
-        child: ListView(
+      body: Container(
+        child: Column(
           children: <Widget>[
-            Card(
-            elevation: 6.0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5.0),
-                ),
-              ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: TextField(
-                onChanged: (String value){
-                  print(value);
-         
+                onChanged: (value) {
+                  filterSearchResults(value);
                 },
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.black,
-                ),
+                controller: editingController,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(10.0),
                   border: OutlineInputBorder(
@@ -99,7 +127,8 @@ class _TrendingState extends State<Trending> {
 
                        if(isAvailable && !isListening){
                          _speechRecognition.listen(locale: "en_US").then((result){
-                             
+                           editingController.text = result;
+                            //  filterSearchResults(result);
                          });
                        }
                      } 
@@ -118,23 +147,18 @@ class _TrendingState extends State<Trending> {
                     color: Colors.black,
                   ),
                 ),
-                maxLines: 1,
-                controller: _searchControl,
+                  style: TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.black,
+                ),
               ),
             ),
-          ),
-
-
-            SizedBox(height: 10.0),
-
-            ListView.builder(
-              primary: false,
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: restaurants == null ? 0 :restaurants.length,
-              itemBuilder: (BuildContext context, int index) {
-
-                return Padding(
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  return Padding(
       padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
       child: Container(
         height: MediaQuery.of(context).size.height/2.25,
@@ -155,7 +179,7 @@ class _TrendingState extends State<Trending> {
                         topRight: Radius.circular(10),
                       ),
                       child: Image.asset(
-                        restaurants[index]["img"],
+                        items[index]["img"],
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -177,7 +201,7 @@ class _TrendingState extends State<Trending> {
                             ),
 
                             Text(
-                              restaurants[index]["rating"],
+                              items[index]["rating"],
                               style: TextStyle(
                                 fontSize: 10,
                               ),
@@ -218,7 +242,7 @@ class _TrendingState extends State<Trending> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Text(
-                    restaurants[index]["title"],
+                    items[index]["title"],
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w800,
@@ -235,7 +259,7 @@ class _TrendingState extends State<Trending> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Text(
-                    restaurants[index]["address"],
+                    items[index]["address"],
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w300,
@@ -251,11 +275,9 @@ class _TrendingState extends State<Trending> {
         ),
       ),
     );
-              },
+                },
+              ),
             ),
-
-            SizedBox(height: 10.0),
-
           ],
         ),
       ),
