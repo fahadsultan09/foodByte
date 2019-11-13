@@ -8,38 +8,65 @@ import 'package:foodbyte/screens/trending.dart';
 import 'package:foodbyte/widgets/slide_item.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
-
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
+class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
   final TextEditingController _searchControl = new TextEditingController();
   IconData mic_icon = Icons.mic;
   String searchText = "Search..";
   SpeechRecognition _speechRecognition;
   bool isAvailable = false;
   bool isListening = false;
-  
-  void initSpeedRecognition(){
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
+  void initSpeedRecognition() {
     _speechRecognition = SpeechRecognition();
-    _speechRecognition.setAvailabilityHandler((bool result)=> setState(()=>isAvailable = result));
-    _speechRecognition.setRecognitionStartedHandler(()=>setState(()=>isListening= true));
-    _speechRecognition.setRecognitionResultHandler((String speech)=>setState(()=>searchText = speech));
-    _speechRecognition.setRecognitionCompleteHandler(()=>setState(()=>isListening = false));
-    _speechRecognition.activate().then((result)=>setState(()=>isAvailable = result));
-   
+    _speechRecognition.setAvailabilityHandler(
+        (bool result) => setState(() => isAvailable = result));
+    _speechRecognition
+        .setRecognitionStartedHandler(() => setState(() => isListening = true));
+    _speechRecognition.setRecognitionResultHandler(
+        (String speech) => setState(() => searchText = speech));
+    _speechRecognition.setRecognitionCompleteHandler(
+        () => setState(() => isListening = false));
+    _speechRecognition
+        .activate()
+        .then((result) => setState(() => isAvailable = result));
   }
-  
+
+  void initNotifications() {
+     flutterLocalNotificationsPlugin =
+        new FlutterLocalNotificationsPlugin();
+    var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
+    var iOS = new IOSInitializationSettings();
+    var initializationSettings = new InitializationSettings(android, iOS);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
 
   @override
-  void initState() { 
+  void initState() {
     super.initState();
-         initSpeedRecognition();
-
+    initSpeedRecognition();
+    initNotifications();
   }
+
+  Future onSelectNotification(String payload) {
+    debugPrint("payload : $payload");
+    showDialog(
+      context: context,
+      builder: (_) => new AlertDialog(
+        title: new Text('Notification'),
+        content: new Text('$payload'),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -47,60 +74,58 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
       appBar: AppBar(
         title: new Text("Food Byte"),
         centerTitle: true,
-        ),
-        drawer: new Drawer(
+      ),
+      drawer: new Drawer(
         child: new ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(
-              accountEmail: new Text("RDJ@gmail.com",style: TextStyle(color: Colors.white)),
-              accountName: new Text("Robert Downey Jr",style: TextStyle(color: Colors.white,fontSize: 20.0)),       
-              currentAccountPicture:  new CircleAvatar(
-                   backgroundImage: AssetImage('assets/RDJ.png'),
-                ),
-            
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: new AssetImage("assets/background.jpg"),
-                  fit: BoxFit.fill
-                )
+              accountEmail: new Text("RDJ@gmail.com",
+                  style: TextStyle(color: Colors.white)),
+              accountName: new Text("Robert Downey Jr",
+                  style: TextStyle(color: Colors.white, fontSize: 20.0)),
+              currentAccountPicture: new CircleAvatar(
+                backgroundImage: AssetImage('assets/RDJ.png'),
               ),
+              decoration: new BoxDecoration(
+                  image: new DecorationImage(
+                      image: new AssetImage("assets/background.jpg"),
+                      fit: BoxFit.fill)),
             ),
             new ListTile(
-              title: new Text("Page One"),
-              trailing: new Icon(Icons.arrow_upward),
-              onTap: () {
-                // Navigator.of(context).pop();
-                // Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("First Page")));
-              }
-            ),
+                title: new Text("Page One"),
+                trailing: new Icon(Icons.arrow_upward),
+                onTap: () {
+                  // Navigator.of(context).pop();
+                  // Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("First Page")));
+                }),
             new ListTile(
-              title: new Text("Wallet"),
-  //             trailing: new Container(
-   
-  //               // child: new Text("32423",style: TextStyle(color: Colors.blueAccent,fontSize: 20.0),),
-  //               decoration: BoxDecoration(
-  //               color: Colors.blue[100],
-  //   border: Border.all(
-  //     color: Colors.blue[200],
-  //     width: 1.0
-  //   ),
-  //   borderRadius: BorderRadius.all(
-  //       Radius.circular(5.0) //         <--- border radius here
-  //   ),
-  // ),
-  //             ),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new scratchCard()));
-              }
-            ),new ListTile(
-              title: new Text("Signout"),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new SignInPage()));
+                title: new Text("Wallet"),
+                //             trailing: new Container(
 
-              }
-            ),
+                //               // child: new Text("32423",style: TextStyle(color: Colors.blueAccent,fontSize: 20.0),),
+                //               decoration: BoxDecoration(
+                //               color: Colors.blue[100],
+                //   border: Border.all(
+                //     color: Colors.blue[200],
+                //     width: 1.0
+                //   ),
+                //   borderRadius: BorderRadius.all(
+                //       Radius.circular(5.0) //         <--- border radius here
+                //   ),
+                // ),
+                //             ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (BuildContext context) => new scratchCard()));
+                }),
+            new ListTile(
+                title: new Text("Signout"),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (BuildContext context) => new SignInPage()));
+                }),
             new Divider(),
             new ListTile(
               title: new Text("Cancel"),
@@ -152,10 +177,10 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
 
       //                  if(isAvailable && !isListening){
       //                    _speechRecognition.listen(locale: "en_US").then((result){
-                             
+
       //                    });
       //                  }
-      //                } 
+      //                }
       //                else{
       //                  searchText = "Search..";
       //                  mic_icon = Icons.mic;
@@ -163,7 +188,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
       //                    _speechRecognition.stop().then((result)=>setState(()=>isListening = result));
       //                  }
       //                }
-      //               }); 
+      //               });
       //             },
       //             ),
       //             hintStyle: TextStyle(
@@ -183,7 +208,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
       //   ),
       // ),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(10.0,0,10.0,0),
+        padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
         child: ListView(
           children: <Widget>[
             SizedBox(height: 20.0),
@@ -198,7 +223,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-
                 FlatButton(
                   child: Text(
                     "See all (43)",
@@ -208,10 +232,10 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                       color: Theme.of(context).accentColor,
                     ),
                   ),
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (BuildContext context){
+                        builder: (BuildContext context) {
                           return TestClass();
                         },
                       ),
@@ -225,13 +249,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
 
             //Horizontal List here
             Container(
-              height: MediaQuery.of(context).size.height/2.4,
+              height: MediaQuery.of(context).size.height / 2.4,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
                 primary: false,
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount: restaurants == null ? 0 :restaurants.length,
+                itemCount: restaurants == null ? 0 : restaurants.length,
                 itemBuilder: (BuildContext context, int index) {
                   Map restaurant = restaurants[index];
 
@@ -250,7 +274,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
 
             SizedBox(height: 10.0),
 
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -261,7 +284,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-
                 FlatButton(
                   child: Text(
                     "See all (9)",
@@ -271,7 +293,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                       color: Theme.of(context).accentColor,
                     ),
                   ),
-                  onPressed: (){
+                  onPressed: () {
 //                    Navigator.of(context).push(
 //                      MaterialPageRoute(
 //                        builder: (BuildContext context){
@@ -288,12 +310,12 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
 
             //Horizontal List here
             Container(
-              height: MediaQuery.of(context).size.height/6,
+              height: MediaQuery.of(context).size.height / 6,
               child: ListView.builder(
                 primary: false,
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
-                itemCount: categories == null ? 0:categories.length,
+                itemCount: categories == null ? 0 : categories.length,
                 itemBuilder: (BuildContext context, int index) {
                   Map cat = categories[index];
 
@@ -305,11 +327,10 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                         children: <Widget>[
                           Image.asset(
                             cat["img"],
-                            height: MediaQuery.of(context).size.height/6,
-                            width: MediaQuery.of(context).size.height/6,
+                            height: MediaQuery.of(context).size.height / 6,
+                            width: MediaQuery.of(context).size.height / 6,
                             fit: BoxFit.cover,
                           ),
-
                           Container(
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
@@ -324,16 +345,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                                 // stops: [0.0, 0.1],
                               ),
                             ),
-                            height: MediaQuery.of(context).size.height/6,
-                            width: MediaQuery.of(context).size.height/6,
+                            height: MediaQuery.of(context).size.height / 6,
+                            width: MediaQuery.of(context).size.height / 6,
                           ),
-
-
                           Center(
-
                             child: Container(
-                              height: MediaQuery.of(context).size.height/6,
-                              width: MediaQuery.of(context).size.height/6,
+                              height: MediaQuery.of(context).size.height / 6,
+                              width: MediaQuery.of(context).size.height / 6,
                               padding: EdgeInsets.all(1),
                               constraints: BoxConstraints(
                                 minWidth: 20,
@@ -352,7 +370,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                               ),
                             ),
                           ),
-
                         ],
                       ),
                     ),
@@ -373,7 +390,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-
                 FlatButton(
                   child: Text(
                     "See all (59)",
@@ -383,7 +399,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                       color: Theme.of(context).accentColor,
                     ),
                   ),
-                  onPressed: (){
+                  onPressed: () {
 //                    Navigator.of(context).push(
 //                      MaterialPageRoute(
 //                        builder: (BuildContext context){
@@ -404,7 +420,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                 primary: false,
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
-                itemCount: friends == null ? 0:friends.length,
+                itemCount: friends == null ? 0 : friends.length,
                 itemBuilder: (BuildContext context, int index) {
                   String img = friends[index];
 
@@ -422,17 +438,23 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
             ),
 
             SizedBox(height: 30.0),
-
-
           ],
         ),
       ),
     );
+  }
 
+  showNotification() async {
+    var android = new AndroidNotificationDetails(
+        'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
+        priority: Priority.High, importance: Importance.Max);
+    var iOS = new IOSNotificationDetails();
+    var platform = new NotificationDetails(android, iOS);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'New Video is out', 'Flutter Local Notification', platform,
+        payload: 'Nitish Kumar Singh is part time Youtuber');
   }
 
   @override
   bool get wantKeepAlive => true;
-
-
 }

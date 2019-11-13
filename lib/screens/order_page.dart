@@ -1,13 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
 import '../widgets/order_card.dart';
-
+import 'package:foodbyte/screens/home.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class OrderPage extends StatefulWidget {
   @override
   _OrderPageState createState() => _OrderPageState();
 }
 
 class _OrderPageState extends State<OrderPage> {
+
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
+
+  void initNotifications() {
+     flutterLocalNotificationsPlugin =
+        new FlutterLocalNotificationsPlugin();
+    var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
+    var iOS = new IOSInitializationSettings();
+    var initializationSettings = new InitializationSettings(android, iOS);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+  @override
+  void initState() {
+    super.initState();
+    initNotifications();
+  }
+
+  Future onSelectNotification(String payload) {
+    debugPrint("payload : $payload");
+    showDialog(
+      context: context,
+      builder: (_) => new AlertDialog(
+        title: new Text('Notification'),
+        content: new Text('$payload'),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,7 +173,7 @@ class _OrderPageState extends State<OrderPage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => SignInPage()));
+              _showNotificationWithoutSound();
             },
             child: Container(
               height: 30.0,
@@ -169,4 +200,22 @@ class _OrderPageState extends State<OrderPage> {
       ),
     );
   }
+
+Future _showNotificationWithoutSound() async {
+  var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
+      'your channel id', 'your channel name', 'your channel description',
+      playSound: false, importance: Importance.Max, priority: Priority.High);
+  var iOSPlatformChannelSpecifics =
+      new IOSNotificationDetails(presentSound: false);
+  var platformChannelSpecifics = new NotificationDetails(
+      androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+  await flutterLocalNotificationsPlugin.show(
+    0,
+    'New Post',
+    'How to Show Notification in Flutter',
+    platformChannelSpecifics,
+    payload: 'No_Sound',
+  );
+}
+  
 }
