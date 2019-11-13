@@ -3,6 +3,7 @@ import 'package:foodbyte/Utils/categories.dart';
 import 'package:foodbyte/Utils/friends.dart';
 import 'package:foodbyte/Utils/restaurants.dart';
 import 'package:foodbyte/screens/scratchCard.dart';
+import 'package:foodbyte/screens/test%20copy.dart';
 import 'package:foodbyte/screens/trending.dart';
 import 'package:foodbyte/widgets/slide_item.dart';
 import 'package:speech_recognition/speech_recognition.dart';
@@ -211,7 +212,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context){
-                          return Trending();
+                          return TestClass();
                         },
                       ),
                     );
