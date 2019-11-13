@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/Profile.dart';
-
+import 'package:foodbyte/screens/order_page.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 
 import 'home.dart';
@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
           Home(),
           Home(),
           Home(),
-          Home(),
+          OrderPage(),
           profilePage(),
         ],
       ),
@@ -66,9 +66,9 @@ class _MainScreenState extends State<MainScreen> {
 
             IconButton(
               icon: Icon(
-                Icons.add,
+                Icons.favorite,
                 size: 24.0,
-                color: Theme.of(context).primaryColor,
+                // color: Theme.of(context).buttonColor,
               ),
               color: _page == 2
                   ? Theme.of(context).accentColor
@@ -80,7 +80,7 @@ class _MainScreenState extends State<MainScreen> {
 
             IconButton(
               icon: Icon(
-                Icons.notifications,
+                Icons.shopping_cart,
                 size: 24.0,
               ),
               color: _page == 3
@@ -112,15 +112,15 @@ class _MainScreenState extends State<MainScreen> {
 
       ),
 
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        elevation: 10.0,
-        child: Icon(
-          Icons.add,
-        ),
-        onPressed: ()=>_pageController.jumpToPage(2),
-      ),
+      // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   elevation: 10.0,
+      //   child: Icon(
+      //     Icons.add,
+      //   ),
+      //   onPressed: ()=>_pageController.jumpToPage(2),
+      // ),
     );
   }
 

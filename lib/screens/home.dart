@@ -6,6 +6,7 @@ import 'package:foodbyte/screens/scratchCard.dart';
 import 'package:foodbyte/screens/trending.dart';
 import 'package:foodbyte/widgets/slide_item.dart';
 import 'package:speech_recognition/speech_recognition.dart';
+import 'package:foodbyte/screens/signIn_page.dart';
 
 
 class Home extends StatefulWidget {
@@ -90,6 +91,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home>{
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new scratchCard()));
+              }
+            ),new ListTile(
+              title: new Text("Signout"),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new SignInPage()));
+
               }
             ),
             new Divider(),
