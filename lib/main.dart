@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodbyte/screens/main_screen.dart';
 import 'package:foodbyte/screens/trending.dart';
+import 'package:foodbyte/localization/localization.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'Utils/Const.dart';
 import 'WelcomeScreen.dart';
@@ -36,6 +38,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', "US"),
+        Locale("ur", "PK"),
+      ],
       debugShowCheckedModeBanner: false,
       title: Constants.appName,
       theme: isDark ? Constants.darkTheme : Constants.lightTheme,

@@ -9,6 +9,7 @@ import 'package:foodbyte/widgets/slide_item.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:foodbyte/localization/localization.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -217,7 +218,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "Trending Restaurants",
+                   AppLocalizations.of(context).heading,
                   style: TextStyle(
                     fontSize: 23,
                     fontWeight: FontWeight.w800,

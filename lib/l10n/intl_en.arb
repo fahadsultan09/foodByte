@@ -1,0 +1,9 @@
+{
+  "@@last_modified": "2019-11-27T21:19:52.755845",
+  "heading": "Trending Restaurants",
+  "@heading": {
+    "description": "top button on page",
+    "type": "text",
+    "placeholders": {}
+  }
+}
