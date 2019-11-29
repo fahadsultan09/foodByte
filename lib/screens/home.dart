@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/Utils/categories.dart';
-import 'package:foodbyte/Utils/friends.dart';
 import 'package:foodbyte/Utils/restaurants.dart';
+import 'package:foodbyte/screens/Restaurant.dart';
 import 'package:foodbyte/screens/scratchCard.dart';
 import 'package:foodbyte/screens/test%20copy.dart';
-import 'package:foodbyte/screens/trending.dart';
 import 'package:foodbyte/widgets/slide_item.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
@@ -260,13 +259,18 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                 itemBuilder: (BuildContext context, int index) {
                   Map restaurant = restaurants[index];
 
-                  return Padding(
-                    padding: EdgeInsets.only(right: 10.0),
-                    child: SlideItem(
-                      img: restaurant["img"],
-                      title: restaurant["title"],
-                      address: restaurant["address"],
-                      rating: restaurant["rating"],
+                  return GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Restaurant(restaurant)));
+                      },
+                      child: Padding(
+                      padding: EdgeInsets.only(right: 10.0),
+                      child: SlideItem(
+                        img: restaurant["img"],
+                        title: restaurant["title"],
+                        address: restaurant["address"],
+                        rating: restaurant["rating"],
+                      ),
                     ),
                   );
                 },
@@ -379,64 +383,64 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
               ),
             ),
 
-            SizedBox(height: 20.0),
+//             SizedBox(height: 20.0),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  "Friends",
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                FlatButton(
-                  child: Text(
-                    "See all (59)",
-                    style: TextStyle(
-//                      fontSize: 22,
-//                      fontWeight: FontWeight.w800,
-                      color: Theme.of(context).accentColor,
-                    ),
-                  ),
-                  onPressed: () {
-//                    Navigator.of(context).push(
-//                      MaterialPageRoute(
-//                        builder: (BuildContext context){
-//                          return DishesScreen();
-//                        },
-//                      ),
-//                    );
-                  },
-                ),
-              ],
-            ),
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: <Widget>[
+//                 Text(
+//                   "Friends",
+//                   style: TextStyle(
+//                     fontSize: 23,
+//                     fontWeight: FontWeight.w800,
+//                   ),
+//                 ),
+//                 FlatButton(
+//                   child: Text(
+//                     "See all (59)",
+//                     style: TextStyle(
+// //                      fontSize: 22,
+// //                      fontWeight: FontWeight.w800,
+//                       color: Theme.of(context).accentColor,
+//                     ),
+//                   ),
+//                   onPressed: () {
+// //                    Navigator.of(context).push(
+// //                      MaterialPageRoute(
+// //                        builder: (BuildContext context){
+// //                          return DishesScreen();
+// //                        },
+// //                      ),
+// //                    );
+//                   },
+//                 ),
+//               ],
+//             ),
 
-            SizedBox(height: 10.0),
+//             SizedBox(height: 10.0),
 
-            Container(
-              height: 50.0,
-              child: ListView.builder(
-                primary: false,
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: friends == null ? 0 : friends.length,
-                itemBuilder: (BuildContext context, int index) {
-                  String img = friends[index];
+            // Container(
+            //   height: 50.0,
+            //   child: ListView.builder(
+            //     primary: false,
+            //     scrollDirection: Axis.horizontal,
+            //     shrinkWrap: true,
+            //     itemCount: friends == null ? 0 : friends.length,
+            //     itemBuilder: (BuildContext context, int index) {
+            //       String img = friends[index];
 
-                  return Padding(
-                    padding: EdgeInsets.only(right: 5.0),
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage(
-                        img,
-                      ),
-                      radius: 25.0,
-                    ),
-                  );
-                },
-              ),
-            ),
+            //       return Padding(
+            //         padding: EdgeInsets.only(right: 5.0),
+            //         child: CircleAvatar(
+            //           backgroundImage: AssetImage(
+            //             img,
+            //           ),
+            //           radius: 25.0,
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // ),
 
             SizedBox(height: 30.0),
           ],

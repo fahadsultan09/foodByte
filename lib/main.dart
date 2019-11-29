@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodbyte/screens/main_screen.dart';
-import 'package:foodbyte/screens/trending.dart';
 import 'package:foodbyte/localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'Utils/Const.dart';
-import 'WelcomeScreen.dart';
 
 
 void main() async{
@@ -51,6 +49,7 @@ class _MyAppState extends State<MyApp> {
       title: Constants.appName,
       theme: isDark ? Constants.darkTheme : Constants.lightTheme,
       home: MainScreen(),
+      // home: Restaurant(),
       // home: WelcomeScreen(),
     );
   }

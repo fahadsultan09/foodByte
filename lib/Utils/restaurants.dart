@@ -1,7 +1,7 @@
 List restaurants = [
   {
     "img": "assets/food1.jpeg",
-    "title": "Happy Jones",
+    "title": "Pizza Hut",
     "address": "1278 Loving Acres RoadKansas City, MO 64110",
     "rating": "4.5"
   },
@@ -13,7 +13,7 @@ List restaurants = [
   },
   {
     "img": "assets/food3.jpeg",
-    "title": "Happy Jones",
+    "title": "Chai Wala",
     "address": "1278 Loving Acres RoadKansas City, MO 64110",
     "rating": "4.5"
   },
@@ -25,32 +25,32 @@ List restaurants = [
   },
   {
     "img": "assets/food5.jpeg",
-    "title": "Happy Jones",
+    "title": "Kolachi",
     "address": "1278 Loving Acres RoadKansas City, MO 64110",
-    "rating": "4.5"
+    "rating": "4.1"
   },
   {
     "img": "assets/food6.jpeg",
-    "title": "Happy Jones",
+    "title": "Burger King",
     "address": "1278 Loving Acres RoadKansas City, MO 64110",
-    "rating": "4.5"
+    "rating": "1.2"
   },
   {
     "img": "assets/food7.jpeg",
-    "title": "Happy Jones",
+    "title": "Ginsoy",
     "address": "1278 Loving Acres RoadKansas City, MO 64110",
     "rating": "4.5"
   },
   {
     "img": "assets/food8.jpeg",
-    "title": "Happy Jones",
+    "title": "Subway",
     "address": "1278 Loving Acres RoadKansas City, MO 64110",
-    "rating": "4.5"
+    "rating": "5"
   },
   {
     "img": "assets/food9.jpeg",
     "title": "Happy Jones",
     "address": "1278 Loving Acres RoadKansas City, MO 64110",
-    "rating": "4.5"
+    "rating": "6"
   }
 ];
