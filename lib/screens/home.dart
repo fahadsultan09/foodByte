@@ -9,6 +9,7 @@ import 'package:speech_recognition/speech_recognition.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:foodbyte/localization/localization.dart';
+import 'package:translator/translator.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -16,28 +17,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
-  final TextEditingController _searchControl = new TextEditingController();
-  IconData mic_icon = Icons.mic;
-  String searchText = "Search..";
-  SpeechRecognition _speechRecognition;
-  bool isAvailable = false;
-  bool isListening = false;
+  // final TextEditingController _searchControl = new TextEditingController();
+  // IconData mic_icon = Icons.mic;
+  // String searchText = "Search..";
+  // SpeechRecognition _speechRecognition;
+  // bool isAvailable = false;
+  // bool isListening = false;
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
-  void initSpeedRecognition() {
-    _speechRecognition = SpeechRecognition();
-    _speechRecognition.setAvailabilityHandler(
-        (bool result) => setState(() => isAvailable = result));
-    _speechRecognition
-        .setRecognitionStartedHandler(() => setState(() => isListening = true));
-    _speechRecognition.setRecognitionResultHandler(
-        (String speech) => setState(() => searchText = speech));
-    _speechRecognition.setRecognitionCompleteHandler(
-        () => setState(() => isListening = false));
-    _speechRecognition
-        .activate()
-        .then((result) => setState(() => isAvailable = result));
-  }
+  // void initSpeedRecognition() {
+  //   _speechRecognition = SpeechRecognition();
+  //   _speechRecognition.setAvailabilityHandler(
+  //       (bool result) => setState(() => isAvailable = result));
+  //   _speechRecognition
+  //       .setRecognitionStartedHandler(() => setState(() => isListening = true));
+  //   _speechRecognition.setRecognitionResultHandler(
+  //       (String speech) => setState(() => searchText = speech));
+  //   _speechRecognition.setRecognitionCompleteHandler(
+  //       () => setState(() => isListening = false));
+  //   _speechRecognition
+  //       .activate()
+  //       .then((result) => setState(() => isAvailable = result));
+  // }
 
   void initNotifications() {
      flutterLocalNotificationsPlugin =
@@ -48,14 +49,39 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: onSelectNotification);
   }
-
+  
+  String input = "Trending Restaurant";
+  String _seeAll = "See all ";
+    final translator = GoogleTranslator();
   @override
   void initState() {
     super.initState();
-    initSpeedRecognition();
+    // initSpeedRecognition();
     initNotifications();
+    _transalate();
   }
+  
+  Future<void> _transalate() async{
+       translator.translate(input, to: 'ur').then((s){
+         setState(() {
+          input = s;
+         });
 
+       });
+    translator.translate(_seeAll,to:'ur').then((s){
+      setState(() {
+          _seeAll = s;
+         });
+    });
+  translator.baseUrl = "https://translate.google.cn/translate_a/single";
+  // translator.translateAndPrint("This means 'testing' in chinese", to: 'zh-cn');
+
+
+  // var translation = await translator
+  //     .translate("I would buy a car, if I had money.", from: 'en', to: 'it');
+  // print("translation: " + translation);
+
+    }
   Future onSelectNotification(String payload) {
     debugPrint("payload : $payload");
     showDialog(
@@ -100,20 +126,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                 }),
             new ListTile(
                 title: new Text("Wallet"),
-                //             trailing: new Container(
 
-                //               // child: new Text("32423",style: TextStyle(color: Colors.blueAccent,fontSize: 20.0),),
-                //               decoration: BoxDecoration(
-                //               color: Colors.blue[100],
-                //   border: Border.all(
-                //     color: Colors.blue[200],
-                //     width: 1.0
-                //   ),
-                //   borderRadius: BorderRadius.all(
-                //       Radius.circular(5.0) //         <--- border radius here
-                //   ),
-                // ),
-                //             ),
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).push(new MaterialPageRoute(
@@ -135,78 +148,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
           ],
         ),
       ),
-      // appBar: PreferredSize(
-      //   child: Padding(
-      //     padding: EdgeInsets.only(top: 30.0, left: 10.0, right: 10.0),
-      //     child: Card(
-      //       elevation: 6.0,
-      //       child: Container(
-      //         decoration: BoxDecoration(
-      //           color: Colors.white,
-      //           borderRadius: BorderRadius.all(
-      //             Radius.circular(5.0),
-      //           ),
-      //         ),
-      //         child: TextField(
-      //           style: TextStyle(
-      //             fontSize: 15.0,
-      //             color: Colors.black,
-      //           ),
-      //           decoration: InputDecoration(
-      //             contentPadding: EdgeInsets.all(10.0),
-      //             border: OutlineInputBorder(
-      //               borderRadius: BorderRadius.circular(5.0),
-      //               borderSide: BorderSide(color: Colors.white,),
-      //             ),
-      //             enabledBorder: OutlineInputBorder(
-      //               borderSide: BorderSide(color: Colors.white,),
-      //               borderRadius: BorderRadius.circular(5.0),
-      //             ),
-      //             hintText: searchText,
-      //             prefixIcon: Icon(
-      //               Icons.search,
-      //               color: Colors.black,
-      //             ),
-      //             suffixIcon: IconButton(icon: Icon(mic_icon,color: Colors.red,),
-      //             color: Colors.black,
-      //             onPressed: (){
-      //               setState(() {
-      //                if(searchText == "Search.."){
-      //                  searchText = "Listening..";
-      //                  mic_icon = Icons.mic_off;
-
-      //                  if(isAvailable && !isListening){
-      //                    _speechRecognition.listen(locale: "en_US").then((result){
-
-      //                    });
-      //                  }
-      //                }
-      //                else{
-      //                  searchText = "Search..";
-      //                  mic_icon = Icons.mic;
-      //                  if(isListening){
-      //                    _speechRecognition.stop().then((result)=>setState(()=>isListening = result));
-      //                  }
-      //                }
-      //               });
-      //             },
-      //             ),
-      //             hintStyle: TextStyle(
-      //               fontSize: 15.0,
-      //               color: Colors.black,
-      //             ),
-      //           ),
-      //           maxLines: 1,
-      //           controller: _searchControl,
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      //   preferredSize: Size(
-      //     MediaQuery.of(context).size.width,
-      //     60.0,
-      //   ),
-      // ),
+      
       body: Padding(
         padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
         child: ListView(
@@ -217,7 +159,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                   AppLocalizations.of(context).heading,
+                  //  AppLocalizations.of(context).heading,
+                  input,
                   style: TextStyle(
                     fontSize: 23,
                     fontWeight: FontWeight.w800,
@@ -225,7 +168,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                 ),
                 FlatButton(
                   child: Text(
-                    "See all (43)",
+                    _seeAll+"(43)",
                     style: TextStyle(
 //                      fontSize: 22,
 //                      fontWeight: FontWeight.w800,
