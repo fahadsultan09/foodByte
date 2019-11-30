@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodbyte/screens/main_screen.dart';
-import 'package:foodbyte/screens/trending.dart';
 import 'package:foodbyte/localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
+import 'package:foodbyte/screens/switch_task.dart';
+import 'package:foodbyte/screens/my_home.dart';
 import 'Utils/Const.dart';
-import 'WelcomeScreen.dart';
 
 
 void main() async{
@@ -22,6 +21,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  SpecifiedLocalizationDelegate _localeOverrideDelegate;
+
   bool isDark = false;
 
   @override
@@ -32,6 +33,14 @@ class _MyAppState extends State<MyApp> {
       statusBarColor: isDark ? Constants.darkPrimary : Constants.lightPrimary,
       statusBarIconBrightness: isDark?Brightness.light:Brightness.dark,
     ));
+    _localeOverrideDelegate = new SpecifiedLocalizationDelegate(null);
+
+  }
+
+  onLocaleChange(Locale l) {
+    setState(() {
+      _localeOverrideDelegate = new SpecifiedLocalizationDelegate(l);
+    });
   }
 
 
@@ -39,6 +48,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       localizationsDelegates: [
+        _localeOverrideDelegate,
         AppLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -51,8 +61,11 @@ class _MyAppState extends State<MyApp> {
       title: Constants.appName,
       theme: isDark ? Constants.darkTheme : Constants.lightTheme,
       home: MainScreen(),
+      // home: MyHomePage(onLocaleChange: onLocaleChange),
       // home: WelcomeScreen(),
     );
   }
 }
+
+
 

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodbyte/screens/signIn_page.dart';
 import '../widgets/order_card.dart';
-import 'package:foodbyte/screens/home.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class OrderPage extends StatefulWidget {
   @override
@@ -53,12 +51,18 @@ class _OrderPageState extends State<OrderPage> {
         elevation: 0.0,
         centerTitle: true,
       ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          OrderCard(),
-        ],
+      // body: ListView(
+      //   padding: EdgeInsets.symmetric(horizontal: 10.0),
+      //   scrollDirection: Axis.vertical,
+      //   children: <Widget>[
+      //     OrderCard(),
+      //   ],
+      // ),
+      body: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int index) {
+            return OrderCard();
+          },
       ),
       bottomNavigationBar: _buildTotalContainer(),
     );
@@ -211,7 +215,7 @@ Future _showNotificationWithoutSound() async {
       androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
   await flutterLocalNotificationsPlugin.show(
     0,
-    'New Post',
+    "Food Order",
     'How to Show Notification in Flutter',
     platformChannelSpecifics,
     payload: 'No_Sound',

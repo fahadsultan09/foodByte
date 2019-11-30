@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/Profile.dart';
 import 'package:foodbyte/screens/favorite_page.dart';
 import 'package:foodbyte/screens/order_page.dart';
-import 'package:foodbyte/screens/signIn_page.dart';
-import 'package:speech_recognition/speech_recognition.dart';
-
+import 'package:foodbyte/screens/review.dart';
+import 'package:translator/translator.dart';
 import 'home.dart';
+import 'package:foodbyte/screens/signIn_page.dart';
+
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -15,8 +16,6 @@ class _MainScreenState extends State<MainScreen> {
   PageController _pageController;
   int _page = 0;
 
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +26,7 @@ class _MainScreenState extends State<MainScreen> {
         onPageChanged: onPageChanged,
         children: <Widget>[
           Home(),
-          SignInPage(),
+          ReviewPage(),
           FavoritePage(),
           OrderPage(),
           profilePage(),
@@ -134,17 +133,21 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _pageController = PageController();
-  }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _pageController.dispose();
-  }
 
-  void onPageChanged(int page) {
-    setState(() {
-      this._page = page;
-    });
-  }
+    }
+  
+    @override
+    void dispose() {
+      super.dispose();
+      _pageController.dispose();
+    }
+  
+    void onPageChanged(int page) {
+      setState(() {
+        this._page = page;
+      });
+    }
+  
+    
 }

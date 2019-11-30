@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/Utils/Const.dart';
 import 'package:foodbyte/Utils/restaurants.dart';
-import 'package:foodbyte/Utils/restaurants.dart' as prefix0;
-import 'package:foodbyte/widgets/trending_item.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 
 

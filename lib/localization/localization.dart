@@ -5,6 +5,7 @@ import 'package:foodbyte/l10n/messages_all.dart';
 
 import 'dart:async';
 
+
 class AppLocalizations {
   static Future<AppLocalizations> load(Locale locale) {
     final String name =
@@ -56,3 +57,20 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
     return false;
   }
 } 
+
+class SpecifiedLocalizationDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
+  final Locale overriddenLocale;
+
+  const SpecifiedLocalizationDelegate(this.overriddenLocale);
+
+  @override
+  bool isSupported(Locale locale) => overriddenLocale != null;
+
+  @override
+  Future<AppLocalizations> load(Locale locale) =>
+      AppLocalizations.load(overriddenLocale);
+
+  @override
+  bool shouldReload(SpecifiedLocalizationDelegate old) => true;
+}
