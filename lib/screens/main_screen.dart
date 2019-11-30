@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/Profile.dart';
+import 'package:foodbyte/screens/favorite_page.dart';
 import 'package:foodbyte/screens/order_page.dart';
+import 'package:foodbyte/screens/signIn_page.dart';
 import 'package:speech_recognition/speech_recognition.dart';
 
 import 'home.dart';
@@ -25,8 +27,8 @@ class _MainScreenState extends State<MainScreen> {
         onPageChanged: onPageChanged,
         children: <Widget>[
           Home(),
-          Home(),
-          Home(),
+          SignInPage(),
+          FavoritePage(),
           OrderPage(),
           profilePage(),
         ],
