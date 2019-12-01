@@ -8,7 +8,6 @@ import 'package:foodbyte/widgets/slide_item.dart';
 // import 'package:speech_recognition/speech_recognition.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:foodbyte/localization/localization.dart';
 import 'package:translator/translator.dart';
 
 class Home extends StatefulWidget {
@@ -58,7 +57,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
     super.initState();
     // initSpeedRecognition();
     initNotifications();
-    _transalate();
+    // _transalate();
   }
   
   Future<void> _transalate() async{
@@ -82,7 +81,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
   // print("translation: " + translation);
 
     }
-  Future onSelectNotification(String payload) {
+  Future<void> onSelectNotification(String payload) async {
     debugPrint("payload : $payload");
     showDialog(
       context: context,
@@ -117,13 +116,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                       image: new AssetImage("assets/background.jpg"),
                       fit: BoxFit.fill)),
             ),
-            new ListTile(
-                title: new Text("Page One"),
-                trailing: new Icon(Icons.arrow_upward),
-                onTap: () {
-                  // Navigator.of(context).pop();
-                  // Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("First Page")));
-                }),
+            // new ListTile(
+            //     title: new Text("Page One"),
+            //     trailing: new Icon(Icons.arrow_upward),
+            //     onTap: () {
+            //       // Navigator.of(context).pop();
+            //       // Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("First Page")));
+            //     }),
             new ListTile(
                 title: new Text("Wallet"),
 

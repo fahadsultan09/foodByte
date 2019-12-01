@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodbyte/screens/main_screen.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -125,18 +126,25 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               height: 30.0,
             ),
-            Container(
-              height: 50.0,
-              decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(25.0)),
-              child: Center(
-                child: Text(
-                  "Sign Up",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
+            GestureDetector(
+              onTap: (){
+              Navigator.of(context).pop();
+              Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new MainScreen()));
+
+              },
+                          child: Container(
+                height: 50.0,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(25.0)),
+                child: Center(
+                  child: Text(
+                    "Sign Up",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

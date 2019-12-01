@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodbyte/screens/home.dart';
-import 'package:foodbyte/screens/main_screen.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ReviewPage extends StatefulWidget {

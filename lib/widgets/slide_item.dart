@@ -1,6 +1,9 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/Utils/Const.dart';
-
+import 'package:foodbyte/Utils/restaurants.dart';
 class SlideItem extends StatefulWidget {
 
   final String img;
@@ -22,6 +25,12 @@ class SlideItem extends StatefulWidget {
 }
 
 class _SlideItemState extends State<SlideItem> {
+  Random rnd =new Random();
+  int r = 1;
+int min = 1;
+int max = 3;
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -81,16 +90,25 @@ class _SlideItemState extends State<SlideItem> {
                   Positioned(
                     top: 6.0,
                     left: 6.0,
-                    child: Card(
-                      shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(3.0)),
-                      child: Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child:Text(
-                          " OPEN ",
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
+                    child: GestureDetector(
+                      onTap: (){
+                        _displayDialog(context);
+                         r = min + rnd.nextInt(max - min);
+                         print(r);
+                      },
+
+                     
+                                          child: Card(
+                        shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(3.0)),
+                        child: Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child:Text(
+                            "REVIEWS",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -142,4 +160,98 @@ class _SlideItemState extends State<SlideItem> {
       ),
     );
   }
+  _displayDialog(BuildContext context) async {
+
+    if(r==1){
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            backgroundColor: Colors.white70,
+            title: Text('Reviews'),
+            children: <Widget>[
+              Container(
+              padding: EdgeInsets.only(right: 10.0,left: 10.0),
+
+              height: MediaQuery.of(context).size.height /2,
+              width: MediaQuery.of(context).size.width-5,
+                child: ListView.builder(
+                  itemCount: myreviews.length,
+                  itemBuilder: (BuildContext context,index){
+                    return Card(
+                      child: ListTile(
+                        title: Text(myreviews[index]["title"]),
+                        subtitle: Text(myreviews[index]["Review"]),
+                      )
+                    );
+                  },
+                ),
+              )
+              ],
+              );
+              },
+              );
+    }
+    else if(r==2){
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            backgroundColor: Colors.white70,
+            title: Text('Reviews'),
+            children: <Widget>[
+              Container(
+              padding: EdgeInsets.only(right: 10.0,left: 10.0),
+
+              height: MediaQuery.of(context).size.height /2,
+              width: MediaQuery.of(context).size.width-5,
+                child: ListView.builder(
+                  itemCount: myreviews2.length,
+                  itemBuilder: (BuildContext context,index){
+                    return Card(
+                      child: ListTile(
+                        title: Text(myreviews2[index]["title"]),
+                        subtitle: Text(myreviews2[index]["Review"]),
+                      )
+                    );
+                  },
+                ),
+              )
+              ],
+              );
+              },
+              );
+    }
+    else if(r==3){
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            backgroundColor: Colors.white70,
+            title: Text('Reviews'),
+            children: <Widget>[
+              Container(
+              padding: EdgeInsets.only(right: 10.0,left: 10.0),
+
+              height: MediaQuery.of(context).size.height /2,
+              width: MediaQuery.of(context).size.width-5,
+                child: ListView.builder(
+                  itemCount: myreviews3.length,
+                  itemBuilder: (BuildContext context,index){
+                    return Card(
+                      child: ListTile(
+                        title: Text(myreviews3[index]["title"]),
+                        subtitle: Text(myreviews3[index]["Review"]),
+                      )
+                    );
+                  },
+                ),
+              )
+              ],
+              );
+              },
+              );
+    }
+    
+    }
 }

@@ -1,8 +1,5 @@
-import 'dart:async';
 import 'package:foodbyte/localization/localization.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 typedef void LocaleChangeCallback(Locale locale);
 

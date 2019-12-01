@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 import 'package:foodbyte/screens/main_screen.dart';
+import 'package:foodbyte/screens/signIn_page.dart';
+import 'package:foodbyte/screens/signup_page.dart';
 import 'package:foodbyte/sharedPreferences.dart';
 
 
@@ -69,7 +71,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           onPressed: (){
                             Navigator.pushReplacement(
     context,
-    MaterialPageRoute(builder: (context) => MainScreen()),
+    MaterialPageRoute(builder: (context) => SignUpPage()),
   );
                           },
                         ),
@@ -80,7 +82,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           TextSpan(text: "Already have account? "),
                           WidgetSpan(
                             child: InkWell(
-                              onTap: (){print("Login tapped");},
+                              onTap: (){
+                                setWalletAmount(0);
+                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>SignInPage()));
+                              },
                               child: Text("Log in", style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 )),
