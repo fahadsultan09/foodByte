@@ -1,8 +1,155 @@
 {
-  "@@last_modified": "2019-11-27T21:19:52.755845",
+  "@@last_modified": "2019-12-01T18:06:19.250386",
   "heading": "Trending Restaurants",
   "@heading": {
     "description": "top button on page",
+    "type": "text",
+    "placeholders": {}
+  },
+  "_seeAll": "see All",
+  "@_seeAll": {
+    "description": "top button on page",
+    "type": "text",
+    "placeholders": {}
+  },
+  "category": "Category",
+  "@category": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "won": "You have won a scratch card",
+  "@won": {
+    "description": "won",
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallet": "Wallet",
+  "@wallet": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signout": "Signout",
+  "@signout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallet_contain": "Your wallet contains",
+  "@wallet_contain": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "scratchCard": "Get A ScratchCard",
+  "@scratchCard": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "username": "Your email or username",
+  "@username": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Password",
+  "@password": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signin": "Sign In",
+  "@signin": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPassword": "Forgotten Password?",
+  "@forgotPassword": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "Don't have an account?",
+  "@account": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signup": "Sign up",
+  "@signup": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm_password": "Confirm Password",
+  "@confirm_password": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "a_account": "Already have an account?",
+  "@a_account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "order": "Food Order",
+  "@order": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "order_detail": "Your Order will arrive at 40 minutes",
+  "@order_detail": {
+    "type": "text",
+    "placeholders": {}
+  },"cart": "Your Food Cart",
+  "@cart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subtotal": "Subtotal",
+  "@subtotal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discount": "Discount",
+  "@discount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cart_total": "Cart Total",
+  "@cart_total": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkout": "Proceed To Checkout",
+  "@checkout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "consumer": "Consumer",
+  "@consumer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "orders": "Orders",
+  "@orders": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "food_item": "Food Items",
+  "@food_item": {
     "type": "text",
     "placeholders": {}
   }

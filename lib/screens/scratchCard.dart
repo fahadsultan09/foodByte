@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/sharedPreferences.dart';
 import 'package:scratcher/scratcher.dart';
-
+import 'package:foodbyte/localization/localization.dart';
 
 class scratchCard extends StatefulWidget {
   @override
@@ -47,7 +47,7 @@ class _scratchCardState extends State<scratchCard> {
               title: Align(
                 alignment: Alignment.center,
                 child: Text(
-                  'You\'ve won a scratch card',
+                  AppLocalizations.of(context).won,
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class _scratchCardState extends State<scratchCard> {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: Text("Wallet"),
+            title: Text(AppLocalizations.of(context).wallet),
           ),
           body: Center(
             child: Padding(
@@ -106,7 +106,7 @@ class _scratchCardState extends State<scratchCard> {
                   // mainAxisAlignment: MainAxisAlignment.center,
                   // crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    new Text("Your wallet contains",style: TextStyle(fontSize: 30.0),),
+                    new Text(AppLocalizations.of(context).wallet_contain,style: TextStyle(fontSize: 30.0),),
                     SizedBox(height: 40.0,),
                     new Text("Rs."+walletAmount.toString(),style: TextStyle(fontSize: 30.0,fontWeight: FontWeight.bold,),),
                     SizedBox(height: 180.0,),
@@ -118,7 +118,7 @@ class _scratchCardState extends State<scratchCard> {
                 ),
                 color: Colors.blue,
                 child: Text(
-                  "Get A ScratchCard",
+                  AppLocalizations.of(context).scratchCard,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

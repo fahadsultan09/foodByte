@@ -21,6 +21,33 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "heading" : MessageLookupByLibrary.simpleMessage("Trending Restaurants")
+    "a_account" : MessageLookupByLibrary.simpleMessage("Already have an account?"),
+    "account" : MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+    "cancel" : MessageLookupByLibrary.simpleMessage("Cancel"),
+    "cart" : MessageLookupByLibrary.simpleMessage("Your Food Cart"),
+    "cart_total" : MessageLookupByLibrary.simpleMessage("Cart Total"),
+    "category" : MessageLookupByLibrary.simpleMessage("Category"),
+    "checkout" : MessageLookupByLibrary.simpleMessage("Proceed To Checkout"),
+    "confirm_password" : MessageLookupByLibrary.simpleMessage("Confirm Password"),
+    "consumer" : MessageLookupByLibrary.simpleMessage("Consumer"),
+    "discount" : MessageLookupByLibrary.simpleMessage("Discount"),
+    "email" : MessageLookupByLibrary.simpleMessage("Email"),
+    "food_item" : MessageLookupByLibrary.simpleMessage("Food Items"),
+    "forgotPassword" : MessageLookupByLibrary.simpleMessage("Forgotten Password?"),
+    "heading" : MessageLookupByLibrary.simpleMessage("Trending Restaurants"),
+    "order" : MessageLookupByLibrary.simpleMessage("Food Order"),
+    "order_detail" : MessageLookupByLibrary.simpleMessage("Your Order will arrive at 40 minutes"),
+    "orders" : MessageLookupByLibrary.simpleMessage("Orders"),
+    "password" : MessageLookupByLibrary.simpleMessage("Password"),
+    "scratchCard" : MessageLookupByLibrary.simpleMessage("Get A ScratchCard"),
+    "seeAll" : MessageLookupByLibrary.simpleMessage("see All"),
+    "signin" : MessageLookupByLibrary.simpleMessage("Sign In"),
+    "signout" : MessageLookupByLibrary.simpleMessage("Signout"),
+    "signup" : MessageLookupByLibrary.simpleMessage("Sign up"),
+    "subtotal" : MessageLookupByLibrary.simpleMessage("Subtotal"),
+    "username" : MessageLookupByLibrary.simpleMessage("Your email or username"),
+    "wallet" : MessageLookupByLibrary.simpleMessage("Wallet"),
+    "wallet_contain" : MessageLookupByLibrary.simpleMessage("Your wallet contains"),
+    "won" : MessageLookupByLibrary.simpleMessage("You have won a scratch card")
   };
 }

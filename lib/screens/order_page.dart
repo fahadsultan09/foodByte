@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/order_card.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:foodbyte/localization/localization.dart';
 class OrderPage extends StatefulWidget {
   @override
   _OrderPageState createState() => _OrderPageState();
@@ -42,7 +43,7 @@ class _OrderPageState extends State<OrderPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Your Food Cart",
+          AppLocalizations.of(context).cart,
           style: TextStyle(
             color: Colors.black,
           ),
@@ -82,7 +83,7 @@ class _OrderPageState extends State<OrderPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Subtotal",
+                AppLocalizations.of(context).subtotal,
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
                     fontSize: 16.0,
@@ -105,7 +106,7 @@ class _OrderPageState extends State<OrderPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Discount",
+                AppLocalizations.of(context).discount,
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
                     fontSize: 16.0,
@@ -123,26 +124,6 @@ class _OrderPageState extends State<OrderPage> {
           SizedBox(
             height: 10.0,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "Tax",
-                style: TextStyle(
-                    color: Color(0xFF9BA7C6),
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "0.5",
-                style: TextStyle(
-                    color: Color(0xFF6C6D6D),
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
           SizedBox(
             height: 10.0,
           ),
@@ -157,7 +138,7 @@ class _OrderPageState extends State<OrderPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Cart Total",
+                AppLocalizations.of(context).cart_total,
                 style: TextStyle(
                     color: Color(0xFF9BA7C6),
                     fontSize: 16.0,
@@ -187,7 +168,7 @@ class _OrderPageState extends State<OrderPage> {
               ),
               child: Center(
                 child: Text(
-                  "Proceed To Checkout",
+                  AppLocalizations.of(context).checkout,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
@@ -215,8 +196,8 @@ Future _showNotificationWithoutSound() async {
       androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
   await flutterLocalNotificationsPlugin.show(
     0,
-    "Food Order",
-    'How to Show Notification in Flutter',
+    AppLocalizations.of(context).order,
+    AppLocalizations.of(context).order_detail,
     platformChannelSpecifics,
     payload: 'No_Sound',
   );

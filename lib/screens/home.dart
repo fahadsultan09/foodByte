@@ -10,6 +10,7 @@ import 'package:foodbyte/screens/signIn_page.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:foodbyte/localization/localization.dart';
 import 'package:translator/translator.dart';
+import 'package:foodbyte/Utils/helper.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -50,38 +51,37 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
         onSelectNotification: onSelectNotification);
   }
   
-  String input = "Trending Restaurant";
-  String _seeAll = "See all ";
+  
     final translator = GoogleTranslator();
   @override
   void initState() {
     super.initState();
     // initSpeedRecognition();
     initNotifications();
-    _transalate();
+    // _transalate();
   }
   
-  Future<void> _transalate() async{
-       translator.translate(input, to: 'ur').then((s){
-         setState(() {
-          input = s;
-         });
+  // Future<void> _transalate() async{
+  //      translator.translate(input, to: 'ur').then((s){
+  //        setState(() {
+  //         input = s;
+  //        });
 
-       });
-    translator.translate(_seeAll,to:'ur').then((s){
-      setState(() {
-          _seeAll = s;
-         });
-    });
-  translator.baseUrl = "https://translate.google.cn/translate_a/single";
-  // translator.translateAndPrint("This means 'testing' in chinese", to: 'zh-cn');
+  //      });
+  //   translator.translate(_seeAll,to:'ur').then((s){
+  //     setState(() {
+  //         _seeAll = s;
+  //        });
+  //   });
+  // translator.baseUrl = "https://translate.google.cn/translate_a/single";
+  // // translator.translateAndPrint("This means 'testing' in chinese", to: 'zh-cn');
 
 
-  // var translation = await translator
-  //     .translate("I would buy a car, if I had money.", from: 'en', to: 'it');
-  // print("translation: " + translation);
+  // // var translation = await translator
+  // //     .translate("I would buy a car, if I had money.", from: 'en', to: 'it');
+  // // print("translation: " + translation);
 
-    }
+    //}
   Future onSelectNotification(String payload) {
     debugPrint("payload : $payload");
     showDialog(
@@ -125,7 +125,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                   // Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("First Page")));
                 }),
             new ListTile(
-                title: new Text("Wallet"),
+                title: new Text(AppLocalizations.of(context).wallet),
 
                 onTap: () {
                   Navigator.of(context).pop();
@@ -133,7 +133,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                       builder: (BuildContext context) => new scratchCard()));
                 }),
             new ListTile(
-                title: new Text("Signout"),
+                title: new Text(AppLocalizations.of(context).signout),
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).push(new MaterialPageRoute(
@@ -141,7 +141,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                 }),
             new Divider(),
             new ListTile(
-              title: new Text("Cancel"),
+              title: new Text(AppLocalizations.of(context).cancel),
               trailing: new Icon(Icons.cancel),
               onTap: () => Navigator.pop(context),
             ),
@@ -160,7 +160,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
               children: <Widget>[
                 Text(
                   //  AppLocalizations.of(context).heading,
-                  input,
+                  AppLocalizations.of(context).heading,
                   style: TextStyle(
                     fontSize: 23,
                     fontWeight: FontWeight.w800,
@@ -168,7 +168,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                 ),
                 FlatButton(
                   child: Text(
-                    _seeAll+"(43)",
+                    AppLocalizations.of(context).seeAll+"(43)",
                     style: TextStyle(
 //                      fontSize: 22,
 //                      fontWeight: FontWeight.w800,
@@ -226,7 +226,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "Category",
+                  AppLocalizations.of(context).category,
                   style: TextStyle(
                     fontSize: 23,
                     fontWeight: FontWeight.w800,
@@ -234,7 +234,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                 ),
                 FlatButton(
                   child: Text(
-                    "See all (9)",
+                    AppLocalizations.of(context).seeAll,
                     style: TextStyle(
 //                      fontSize: 22,
 //                      fontWeight: FontWeight.w800,

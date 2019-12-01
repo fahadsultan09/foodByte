@@ -6,7 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:foodbyte/screens/switch_task.dart';
 import 'package:foodbyte/screens/my_home.dart';
 import 'Utils/Const.dart';
-
+import 'Utils/helper.dart';
 
 void main() async{
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
@@ -21,8 +21,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  SpecifiedLocalizationDelegate _localeOverrideDelegate;
-
+ SpecificLocalizationDelegate _specificLocalizationDelegate;
   bool isDark = false;
 
   @override
@@ -33,13 +32,16 @@ class _MyAppState extends State<MyApp> {
       statusBarColor: isDark ? Constants.darkPrimary : Constants.lightPrimary,
       statusBarIconBrightness: isDark?Brightness.light:Brightness.dark,
     ));
-    _localeOverrideDelegate = new SpecifiedLocalizationDelegate(null);
+
+        helper.onLocaleChanged = onLocaleChange;
+
+    _specificLocalizationDelegate = new SpecificLocalizationDelegate(new Locale("en"));
 
   }
 
   onLocaleChange(Locale l) {
     setState(() {
-      _localeOverrideDelegate = new SpecifiedLocalizationDelegate(l);
+      _specificLocalizationDelegate = new SpecificLocalizationDelegate(l);
     });
   }
 
@@ -48,8 +50,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       localizationsDelegates: [
-        _localeOverrideDelegate,
-        AppLocalizationsDelegate(),
+        _specificLocalizationDelegate,
+        // AppLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
@@ -57,6 +59,7 @@ class _MyAppState extends State<MyApp> {
         Locale('en', "US"),
         Locale("ur", "PK"),
       ],
+     locale: _specificLocalizationDelegate.overriddenLocale ,
       debugShowCheckedModeBanner: false,
       title: Constants.appName,
       theme: isDark ? Constants.darkTheme : Constants.lightTheme,

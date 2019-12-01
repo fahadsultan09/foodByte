@@ -1,8 +1,155 @@
 {
-  "@@last_modified": "2019-11-27T21:19:52.755845",
+  "@@last_modified": "2019-12-01T18:06:19.250386",
   "heading": "رجحانات والے ریستوراں",
   "@heading": {
     "description": "top button on page",
+    "type": "text",
+    "placeholders": {}
+  },
+  "seeAll": "تمام دیکھیں",
+  "@seeAll": {
+    "description": "top button on page",
+    "type": "text",
+    "placeholders": {}
+  },
+  "category": "قسم",
+  "@category": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "won": "آپ نے سکریچ کارڈ جیت لیا ہے",
+  "@won": {
+    "description": "won",
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallet": "پرس",
+  "@wallet": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signout": "باہر جائیں",
+  "@signout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "منسوخ کریں",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallet_contain": "آپ کے پرس پر مشتمل ہے",
+  "@wallet_contain": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "scratchCard": "سکریچ کارڈ حاصل کریں",
+  "@scratchCard": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "username": "آپ کا ای میل یا صارف نام",
+  "@username": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "پاس ورڈ",
+  "@password": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signin": "داخلہ",
+  "@signin": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPassword": "بھول گئے پاس ورڈ؟",
+  "@forgotPassword": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "کیا آپ کا اکاؤنٹ نہیں ہے؟",
+  "@account": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "signup": "سائن اپ کریں",
+  "@signup": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "ای میل",
+  "@email": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm_password": "پاس ورڈ کی تصدیق کریں",
+  "@confirm_password": {
+    "description": "",
+    "type": "text",
+    "placeholders": {}
+  },
+  "a_account": "پہلے سے ہی ایک اکاؤنٹ ہے؟",
+  "@a_account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "order": "فوڈ آرڈر",
+  "@order": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "order_detail": "آپ کا آرڈر 40 منٹ پر پہنچے گا",
+  "@order_detail": {
+    "type": "text",
+    "placeholders": {}
+  },"cart": "آپ کے کھانے کی ٹوکری",
+  "@cart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subtotal": "کل",
+  "@subtotal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discount": "چھوٹ",
+  "@discount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cart_total": "ٹوکری کل",
+  "@cart_total": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "checkout": "چیک آؤٹ پر آگے بڑھیں",
+  "@checkout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "consumer": "صارف",
+  "@consumer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "orders": "کھانے کے احکامات",
+  "@orders": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "food_item": "غذائی اشیاء",
+  "@food_item": {
     "type": "text",
     "placeholders": {}
   }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/home.dart';
 import 'package:foodbyte/screens/main_screen.dart';
 import '../screens/signup_page.dart';
+import 'package:foodbyte/localization/localization.dart';
+
 
 class SignInPage extends StatefulWidget {
   @override
@@ -14,7 +16,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget _buildEmailTextField() {
     return TextFormField(
       decoration: InputDecoration(
-        hintText: "Your email or username",
+        hintText: AppLocalizations.of(context).username,
         hintStyle: TextStyle(
           color: Color(0xFFBDC2CB),
           fontSize: 18.0,
@@ -26,7 +28,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget _buildPasswordTextField() {
     return TextFormField(
       decoration: InputDecoration(
-        hintText: "Password",
+        hintText: AppLocalizations.of(context).password,
         hintStyle: TextStyle(
           color: Color(0xFFBDC2CB),
           fontSize: 18.0,
@@ -55,7 +57,7 @@ class _SignInPageState extends State<SignInPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Sign In",
+              AppLocalizations.of(context).signin,
               style: TextStyle(
                 fontSize: 40.0,
                 fontWeight: FontWeight.bold,
@@ -68,7 +70,7 @@ class _SignInPageState extends State<SignInPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Text(
-                  "Forgotten Password?",
+                  AppLocalizations.of(context).forgotPassword,
                   style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.blueAccent,
@@ -110,7 +112,7 @@ class _SignInPageState extends State<SignInPage> {
                   borderRadius: BorderRadius.circular(25.0)),
               child: Center(
                 child: Text(
-                  "Sign In",
+                  AppLocalizations.of(context).signin,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
@@ -127,7 +129,7 @@ class _SignInPageState extends State<SignInPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "Don't have an account?",
+                  AppLocalizations.of(context).account,
                   style: TextStyle(
                       color: Color(0xFFBDC2CB),
                       fontWeight: FontWeight.bold,
@@ -140,7 +142,7 @@ class _SignInPageState extends State<SignInPage> {
                         builder: (BuildContext context) => SignUpPage()));
                   },
                   child: Text(
-                    "Sign up",
+                    AppLocalizations.of(context).signup,
                     style: TextStyle(
                         color: Colors.blueAccent,
                         fontWeight: FontWeight.bold,

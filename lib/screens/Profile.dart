@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodbyte/localization/localization.dart';
 
 
 
@@ -41,7 +42,7 @@ class _profilePageState extends State<profilePage> {
                             new SizedBox(height: _height/25.0,),
                             Text(_name,style: new TextStyle(fontWeight: FontWeight.bold, fontSize: _width/15, color: Colors.black),),
                              new Padding(padding: new EdgeInsets.only(top: _height/30, left: _width/8, right: _width/8),
-                             child: Text("Consumer",style: TextStyle(fontWeight: FontWeight.normal,fontSize: _width/25,color: Colors.black),textAlign: TextAlign.center,),
+                             child: Text(AppLocalizations.of(context).consumer,style: TextStyle(fontWeight: FontWeight.normal,fontSize: _width/25,color: Colors.black),textAlign: TextAlign.center,),
                              
                              ),
                           new Divider(height: _height/30,color: Colors.black,),
@@ -49,8 +50,8 @@ class _profilePageState extends State<profilePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                             
-                            rowCell(231,"Orders"),
-                            rowCell(45,"Food Items")
+                            rowCell(231,AppLocalizations.of(context).orders),
+                            rowCell(45,AppLocalizations.of(context).food_item)
                           ],),
                            new Divider(height: _height/30,color: Colors.black),
                            

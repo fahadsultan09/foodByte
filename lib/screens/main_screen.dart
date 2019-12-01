@@ -6,11 +6,22 @@ import 'package:foodbyte/screens/review.dart';
 import 'package:translator/translator.dart';
 import 'home.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
+import 'package:foodbyte/localization/localization.dart';
+import 'package:foodbyte/Utils/helper.dart';
+// typedef void LocaleChangeCallback(Locale locale);
+import 'package:foodbyte/localization/localization.dart';
+import 'package:foodbyte/main.dart';
 
 class MainScreen extends StatefulWidget {
+
+    // final LocaleChangeCallback onLocaleChange;
+
+  // MainScreen() 
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
+
 
 class _MainScreenState extends State<MainScreen> {
   PageController _pageController;
@@ -26,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
         onPageChanged: onPageChanged,
         children: <Widget>[
           Home(),
-          ReviewPage(),
+          SignInPage(),
           FavoritePage(),
           OrderPage(),
           profilePage(),
@@ -112,16 +123,20 @@ class _MainScreenState extends State<MainScreen> {
         shape: CircularNotchedRectangle(),
 
       ),
-
-      // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: FloatingActionButton(
-      //   elevation: 10.0,
-      //   child: Icon(
-      //     Icons.add,
-      //   ),
-      //   onPressed: ()=>_pageController.jumpToPage(2),
-      // ),
+    
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        elevation: 10.0,
+        child: Icon(
+          Icons.add,
+        ),
+        onPressed: (){
+          this.setState((){
+                    helper.onLocaleChanged(new Locale("ur"));
+                  });
+        },
+      ),
     );
   }
 
@@ -133,6 +148,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _pageController = PageController();
+
 
 
     }
