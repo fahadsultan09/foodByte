@@ -5,17 +5,10 @@ import 'package:foodbyte/screens/order_page.dart';
 import 'package:foodbyte/screens/review.dart';
 import 'home.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
-import 'package:foodbyte/localization/localization.dart';
-import 'package:foodbyte/Utils/helper.dart';
-// typedef void LocaleChangeCallback(Locale locale);
-import 'package:foodbyte/localization/localization.dart';
-import 'package:foodbyte/main.dart';
+
 
 class MainScreen extends StatefulWidget {
 
-    // final LocaleChangeCallback onLocaleChange;
-
-  // MainScreen() 
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -125,19 +118,7 @@ class _MainScreenState extends State<MainScreen> {
 
       ),
     
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        elevation: 10.0,
-        child: Icon(
-          Icons.add,
-        ),
-        onPressed: (){
-          this.setState((){
-                    helper.onLocaleChanged(new Locale("ur"));
-                  });
-        },
-      ),
+
     );
   }
 
