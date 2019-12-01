@@ -11,10 +11,27 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:translator/translator.dart';
 import 'package:foodbyte/Utils/helper.dart';
 import 'package:foodbyte/localization/localization.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:foodbyte/Utils/models.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
+}
+
+Future<Post> fetchPost() async {
+  final response =
+      await http.get('https://jsonplaceholder.typicode.com/posts/1');
+
+  if (response.statusCode == 200) {
+    // If the call to the server was successful, parse the JSON.
+    return Post.fromJson(json.decode(response.body));
+  } else {
+    // If that call was not successful, throw an error.
+    throw Exception('Failed to load post');
+  }
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
@@ -24,6 +41,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
   // SpeechRecognition _speechRecognition;
   // bool isAvailable = false;
   // bool isListening = false;
+  Future<Post> post;
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   // void initSpeedRecognition() {
@@ -42,46 +60,24 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
   // }
 
   void initNotifications() {
-     flutterLocalNotificationsPlugin =
-        new FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
     var iOS = new IOSInitializationSettings();
     var initializationSettings = new InitializationSettings(android, iOS);
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: onSelectNotification);
   }
-  
-  
-    final translator = GoogleTranslator();
+
+  // final translator = GoogleTranslator();
   @override
   void initState() {
     super.initState();
     // initSpeedRecognition();
     initNotifications();
+    post = fetchPost();
     // _transalate();
   }
-  
-  // Future<void> _transalate() async{
-  //      translator.translate(input, to: 'ur').then((s){
-  //        setState(() {
-  //         input = s;
-  //        });
 
-  //      });
-  //   translator.translate(_seeAll,to:'ur').then((s){
-  //     setState(() {
-  //         _seeAll = s;
-  //        });
-  //   });
-  // translator.baseUrl = "https://translate.google.cn/translate_a/single";
-  // // translator.translateAndPrint("This means 'testing' in chinese", to: 'zh-cn');
-
-
-  // // var translation = await translator
-  // //     .translate("I would buy a car, if I had money.", from: 'en', to: 'it');
-  // // print("translation: " + translation);
-
-    //}
   Future onSelectNotification(String payload) {
     debugPrint("payload : $payload");
     showDialog(
@@ -124,9 +120,35 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
             //       // Navigator.of(context).pop();
             //       // Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("First Page")));
             //     }),
+            new Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: <Widget>[
+            new RaisedButton(
+            padding: EdgeInsets.only(right: 10.0,left: 10.0),
+
+              onPressed: () {
+                this.setState(() {
+                  helper.onLocaleChanged(new Locale("en"));
+                });
+              },
+              child: new Text("English"),
+            ),
+            new RaisedButton(
+          padding: EdgeInsets.only(right: 10.0,left: 10.0),
+
+              onPressed: () {
+                this.setState(() {
+                  helper.onLocaleChanged(new Locale("ur"));
+                });
+              },
+              child: new Text("Urdu"),
+            ),
+          ]
+          ),
+
             new ListTile(
                 title: new Text(AppLocalizations.of(context).wallet),
-
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).push(new MaterialPageRoute(
@@ -148,7 +170,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
           ],
         ),
       ),
-      
       body: Padding(
         padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
         child: ListView(
@@ -168,7 +189,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                 ),
                 FlatButton(
                   child: Text(
-                    AppLocalizations.of(context).seeAll+"(43)",
+                    AppLocalizations.of(context).seeAll + "(43)",
                     style: TextStyle(
 //                      fontSize: 22,
 //                      fontWeight: FontWeight.w800,
@@ -203,10 +224,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                   Map restaurant = restaurants[index];
 
                   return GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Restaurant(restaurant)));
-                      },
-                      child: Padding(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Restaurant(restaurant)));
+                    },
+                    child: Padding(
                       padding: EdgeInsets.only(right: 10.0),
                       child: SlideItem(
                         img: restaurant["img"],
@@ -402,6 +424,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
         0, 'New Video is out', 'Flutter Local Notification', platform,
         payload: 'Nitish Kumar Singh is part time Youtuber');
   }
+
+
 
   @override
   bool get wantKeepAlive => true;

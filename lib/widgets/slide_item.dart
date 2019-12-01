@@ -171,10 +171,10 @@ int max = 3;
             title: Text('Reviews'),
             children: <Widget>[
               Container(
-              padding: EdgeInsets.only(right: 10.0,left: 10.0),
+              // padding: EdgeInsets.only(right: 10.0,left: 10.0),
 
-              height: MediaQuery.of(context).size.height /2,
-              width: MediaQuery.of(context).size.width-5,
+              // height: MediaQuery.of(context).size.height /2,
+              // width: MediaQuery.of(context).size.width-5,
                 child: ListView.builder(
                   itemCount: myreviews.length,
                   itemBuilder: (BuildContext context,index){
