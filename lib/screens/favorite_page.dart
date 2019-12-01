@@ -12,12 +12,12 @@ class _FavoritePageState extends State<FavoritePage>{
   Widget build(BuildContext context){
     return Center(
       child: Container(
-              height: MediaQuery.of(context).size.height / 2.4,
+              height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
                 primary: false,
                 shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
+                scrollDirection: Axis.vertical,
                 itemCount: restaurants == null ? 0 : restaurants.length,
                 itemBuilder: (BuildContext context, int index) {
                   Map restaurant = restaurants[index];

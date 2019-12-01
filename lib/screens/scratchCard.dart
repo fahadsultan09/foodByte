@@ -18,7 +18,7 @@ class _scratchCardState extends State<scratchCard> {
   Random rnd;
   int min = 0;
   int max = 6;
-  double _opacity = 0.0;
+  double _opacity = 1.0;
 
   int reward;
 

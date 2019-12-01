@@ -54,3 +54,88 @@ List restaurants = [
     "rating": "6"
   }
 ];
+
+List myreviews = [
+  {
+    "title": "Fahad",
+    "Review": "Good Hai",
+    "rating": 3.5
+  },
+  {
+    "title": "Alley",
+    "Review": "Nice atmosphere",
+    "rating": 5
+  },
+  {
+    "title": "Fahad",
+    "Review": "Chicken Biryani is quite good",
+    "rating": 5
+  },
+    {
+    "title": "hammad",
+    "Review": "ON chal Hai",
+    "rating": 4.4
+  },  {
+    "title": "Fahad",
+    "Review": "Nice",
+    "rating": 4.4
+  },
+  
+];
+
+
+List myreviews2 = [
+  {
+    "title": "Ahmed",
+    "Review": "Good Hai",
+    "rating": 4.4
+  },
+  {
+    "title": "Alley",
+    "Review": "Nice atmosphere",
+    "rating": 4.4
+  },
+  {
+    "title": "Ammar",
+    "Review": "Tikka Biryani is quite good",
+    "rating": 3.1
+  },
+    {
+    "title": "hammad Sultan",
+    "Review": "ON chal Hai",
+    "rating": 4.1
+  },  {
+    "title": "Fahad Jahenzeb",
+    "Review": "Nice",
+    "rating": 3.1
+  },
+  
+];
+
+List myreviews3 = [
+  {
+    "title": "Shahid",
+    "Review": "Good Hai",
+    "rating": 4.2
+  },
+  {
+    "title": "Hassan",
+    "Review": "Nice atmosphere",
+    "rating": 4.4
+  },
+  {
+    "title": "Ammar",
+    "Review": "Tikka Biryani is quite good",
+    "rating": 3.1
+  },
+    {
+    "title": "hammad Sultan",
+    "Review": "ON chal Hai",
+    "rating": 4.1
+  },  {
+    "title": "Fahad Jahenzeb",
+    "Review": "Nice",
+    "rating": 3.1
+  },
+  
+];

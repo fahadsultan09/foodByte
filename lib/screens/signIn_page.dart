@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodbyte/screens/home.dart';
 import 'package:foodbyte/screens/main_screen.dart';
 import '../screens/signup_page.dart';
 import 'package:foodbyte/localization/localization.dart';

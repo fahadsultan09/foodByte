@@ -3,7 +3,6 @@ import 'package:foodbyte/screens/Profile.dart';
 import 'package:foodbyte/screens/favorite_page.dart';
 import 'package:foodbyte/screens/order_page.dart';
 import 'package:foodbyte/screens/review.dart';
-import 'package:translator/translator.dart';
 import 'home.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
 import 'package:foodbyte/localization/localization.dart';
@@ -24,6 +23,8 @@ class MainScreen extends StatefulWidget {
 
 
 class _MainScreenState extends State<MainScreen> {
+
+  
   PageController _pageController;
   int _page = 0;
 

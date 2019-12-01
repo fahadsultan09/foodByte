@@ -8,9 +8,9 @@ import 'package:foodbyte/widgets/slide_item.dart';
 // import 'package:speech_recognition/speech_recognition.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:foodbyte/localization/localization.dart';
 import 'package:translator/translator.dart';
 import 'package:foodbyte/Utils/helper.dart';
+import 'package:foodbyte/localization/localization.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -117,13 +117,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                       image: new AssetImage("assets/background.jpg"),
                       fit: BoxFit.fill)),
             ),
-            new ListTile(
-                title: new Text("Page One"),
-                trailing: new Icon(Icons.arrow_upward),
-                onTap: () {
-                  // Navigator.of(context).pop();
-                  // Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("First Page")));
-                }),
+            // new ListTile(
+            //     title: new Text("Page One"),
+            //     trailing: new Icon(Icons.arrow_upward),
+            //     onTap: () {
+            //       // Navigator.of(context).pop();
+            //       // Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("First Page")));
+            //     }),
             new ListTile(
                 title: new Text(AppLocalizations.of(context).wallet),
 
