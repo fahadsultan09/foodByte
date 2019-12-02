@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodbyte/screens/order_page.dart';
 
 
 class Restaurant extends StatefulWidget {
@@ -39,36 +40,10 @@ class _RestaurantState extends State<Restaurant> {
           SliverFillRemaining(
             
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: item.length,
               itemBuilder: (BuildContext context, int index) {
 
-                return cardy();
-                  // return Card(
-                  //   borderOnForeground: true,
-                  //    color: mycolor,
-                  //    child: ListTile(
-                  //      title: Text("Chicken Biryani",style: TextStyle(fontSize: 30),),
-                  //      subtitle: Text("Rs 100",style: TextStyle(fontSize: 20.0),),
-                  //      leading: CircleAvatar(
-                  //        radius: 30.0,
-                  //        backgroundImage: AssetImage('assets/food12.jpg'),
-                  //      ),
-                  //      isThreeLine: true,
-                  //     onLongPress: (){
-                        
-                  //       // if(mycolor == Colors.white){
-                  //       //     setState(() {
-                  //       //       mycolor = Colors.grey;
-                  //       //     });
-                  //       // }
-                  //       // else{
-                  //       //   mycolor = Colors.white;
-                  //       // }
-                        
-                        
-                  //     },
-                  //    ),
-                  // );
+                return cardy(index);
               },
             ),
             )
@@ -78,21 +53,28 @@ class _RestaurantState extends State<Restaurant> {
   }
   
 }
-
+int c = 0;
 
 class cardy extends StatefulWidget {
+
+  int i;
+  cardy(this.i);
   @override
-  _cardyState createState() => new _cardyState();
+  _cardyState createState() => new _cardyState(i);
 }
 
 class _cardyState extends State<cardy> {
+
+  int index=0;
+  _cardyState(this.index);
+
   var isSelected = false;
   var mycolor=Colors.white;
   Color _color = Colors.red;
   int i = 0;
   @override
   Widget build(BuildContext context) {
-    
+    Map it = item[index];
     return new Card(
       color: Colors.white,
       child: new Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
@@ -102,7 +84,7 @@ class _cardyState extends State<cardy> {
                          radius: 30.0,
                          backgroundImage: AssetImage('assets/food12.jpg'),
                        ),
-                       title: Text("Chicken Biryani",style: TextStyle(fontSize: 25,color: Colors.black,),),
+                       title: Text(it["name"],style: TextStyle(fontSize: 25,color: Colors.black,),),
                        subtitle: Text("Rs 100",style: TextStyle(fontSize: 20.0,color: Colors.black),),
             trailing: ClipOval(
           child: Container(
@@ -133,11 +115,14 @@ class _cardyState extends State<cardy> {
       if (isSelected) {
         // mycolor=Colors.white;
         isSelected = false;
+        
       } else {
         // mycolor=Colors.grey[300];
         // isSelected = true;
         _color = Colors.green;
         i++;
+        // L.add(item[index]);
+        L.add(item[index]);
       }
     });
             } // what should I put here,
@@ -158,3 +143,34 @@ class _cardyState extends State<cardy> {
     });
   }
 }
+
+List item = [
+{
+  "name":"Grilled Chicken",
+  "price":120,
+},
+{
+  "name":"Chicken Biryani",
+  "price":100,
+},
+{
+  "name":"Moist Handi Chicken",
+  "price":500,
+},
+{
+  "name":"Chicken Tikka",
+  "price":200,
+},
+{
+  "name":"Tikka Seekh",
+  "price":200,
+},
+{
+  "name":"Tikka Roll",
+  "price":200,
+},
+{
+  "name":"Chick Roll",
+  "price":200,
+}
+];

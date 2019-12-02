@@ -3,6 +3,7 @@ import 'package:foodbyte/screens/main_screen.dart';
 import '../screens/signup_page.dart';
 import 'package:foodbyte/localization/localization.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -14,6 +15,9 @@ class _SignInPageState extends State<SignInPage> {
 
   Widget _buildEmailTextField() {
     return TextFormField(
+      onChanged: (value){
+        _email = value;
+      },
       decoration: InputDecoration(
         hintText: AppLocalizations.of(context).username,
         hintStyle: TextStyle(
@@ -23,9 +27,29 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
+  String _email,_password;
+  FirebaseAuth auth = FirebaseAuth.instance;
+   Future validateAndSubmit () async {
+      try{
+        
+        var user =  await auth.signInWithEmailAndPassword(email: _email, password: _password);
 
+        if(user!=null){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> MainScreen()));
+        }
+    
+      }
+      catch (e){
+        print("User not signed in" + e.toString());
+        // Firestore firestore = Firestore 
+      }
+    
+  }
   Widget _buildPasswordTextField() {
     return TextFormField(
+      onChanged: (value){
+        _password = value;
+      },
       decoration: InputDecoration(
         hintText: AppLocalizations.of(context).password,
         hintStyle: TextStyle(

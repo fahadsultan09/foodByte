@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/main_screen.dart';
 import 'package:foodbyte/screens/signIn_page.dart';
 import 'package:foodbyte/localization/localization.dart';
-
+String CURRENTUSERID;
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -11,9 +13,42 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool _toggleVisibility = true;
   bool _toggleConfirmVisibility = true;
+  String _email,_password,_username;
+  Future validateAndSubmit () async {
+    
+    if (true){
+      try {
+    //  AuthResult authResult = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email,password:_password);
+                     
+          AuthResult _user =  (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email,password:_password));
 
+           CURRENTUSERID = _user.user.uid;
+
+        // Firestore _firestore = Firestore.instance;
+      if(_user!=null){
+        Firestore _firestore = Firestore.instance;
+        _firestore.collection("Users").document(CURRENTUSERID).setData(
+        {"Email": _email,
+        "Username": _username,
+
+      });
+
+          Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
+      }
+   
+
+          }
+          catch (e){
+          
+            print("User not created " + e.toString());
+
+        }
+        }
+    
+      }
   Widget _buildEmailTextField() {
     return TextFormField(
+
       decoration: InputDecoration(
         hintText: AppLocalizations.of(context).email,
         hintStyle: TextStyle(

@@ -10,7 +10,7 @@ class profilePage extends StatefulWidget {
 }
 
 class _profilePageState extends State<profilePage> {
- String  _name = "Robert Downey Jr";
+ String  _name = "Fahad Sultan";
   @override
   Widget build(BuildContext context) {
           final _width = MediaQuery.of(context).size.width;

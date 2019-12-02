@@ -4,6 +4,7 @@ import 'package:foodbyte/WelcomeScreen.dart';
 import 'package:foodbyte/screens/main_screen.dart';
 import 'package:foodbyte/localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:foodbyte/screens/signIn_page.dart';
 import 'package:foodbyte/screens/switch_task.dart';
 import 'package:foodbyte/screens/my_home.dart';
 import 'Utils/Const.dart';
@@ -64,7 +65,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: Constants.appName,
       theme: isDark ? Constants.darkTheme : Constants.lightTheme,
-      home: MainScreen(),
+      home: SignInPage(),
       // home: MyHomePage(onLocaleChange: onLocaleChange),
       // home: WelcomeScreen(),
     );

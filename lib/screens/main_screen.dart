@@ -31,7 +31,6 @@ class _MainScreenState extends State<MainScreen> {
         onPageChanged: onPageChanged,
         children: <Widget>[
           Home(),
-          SignInPage(),
           FavoritePage(),
           OrderPage(),
           profilePage(),
@@ -59,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
 
             IconButton(
               icon:Icon(
-                Icons.label,
+                Icons.favorite,
                 size: 24.0,
               ),
               color: _page == 1
@@ -72,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
 
             IconButton(
               icon: Icon(
-                Icons.favorite,
+                Icons.shopping_cart,
                 size: 24.0,
                 // color: Theme.of(context).buttonColor,
               ),
@@ -86,7 +85,7 @@ class _MainScreenState extends State<MainScreen> {
 
             IconButton(
               icon: Icon(
-                Icons.shopping_cart,
+                Icons.person,
                 size: 24.0,
               ),
               color: _page == 3
@@ -97,18 +96,7 @@ class _MainScreenState extends State<MainScreen> {
               onPressed: ()=>_pageController.jumpToPage(3),
             ),
 
-            IconButton(
-              icon: Icon(
-                Icons.person,
-                size: 24.0,
-              ),
-              color: _page == 4
-                  ? Theme.of(context).accentColor
-                  : Theme
-                  .of(context)
-                  .textTheme.caption.color,
-              onPressed: ()=>_pageController.jumpToPage(4),
-            ),
+           
 
             SizedBox(width:7),
           ],

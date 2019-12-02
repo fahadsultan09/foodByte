@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "274151498743",
+    "firebase_url": "https://foodbyte-bb099.firebaseio.com",
+    "project_id": "foodbyte-bb099",
+    "storage_bucket": "foodbyte-bb099.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274151498743:android:f146a6e662dfeab19684f2",
+        "android_client_info": {
+          "package_name": "com.example.foodbyte"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274151498743-289qplq06nuq5vskuku5nshqq1r65res.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLqJbxmLyORsVMToni0yntwEGiGV2WdpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274151498743-289qplq06nuq5vskuku5nshqq1r65res.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

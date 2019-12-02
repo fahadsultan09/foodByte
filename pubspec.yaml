@@ -35,7 +35,8 @@ dependencies:
   http: ^0.12.0+2
   translator: ^0.1.2
   flutter_rating_bar: ^3.0.0
-
+  cloud_firestore:
+  firebase_auth:
   shared_preferences:
 dev_dependencies:
   
@@ -63,11 +64,11 @@ flutter:
   assets:
     - assets/
     - assets/rewards.jpg
-    - assets/food1.jpeg
+    - assets/Pizza-Hut-Logo.png
     - assets/food2.jpeg
     - assets/food3.jpeg
     - assets/food4.jpeg
-    - assets/food5.jpeg
+    - assets/Kolachi.jpg
     - assets/food6.jpeg
     - assets/food7.jpeg
     - assets/food8.jpeg

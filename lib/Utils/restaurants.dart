@@ -1,50 +1,50 @@
 List restaurants = [
   {
-    "img": "assets/food1.jpeg",
+    "img": "assets/Pizza-Hut-Logo.png",
     "title": "Pizza Hut",
-    "address": "1278 Loving Acres RoadKansas City, MO 64110",
+    "address": "1th Street Dhoraji,Karachi",
     "rating": "4.5"
   },
   {
     "img": "assets/food2.jpeg",
-    "title": "Uncle Boons",
-    "address": "1278 Loving Acres RoadKansas City, MO 64110",
+    "title": "Uncle Chai",
+    "address": "20th Street Suhrab Goth,Karachi",
     "rating": "4.5"
   },
   {
     "img": "assets/food3.jpeg",
     "title": "Chai Wala",
-    "address": "1278 Loving Acres RoadKansas City, MO 64110",
+    "address": "North Karachi Branch,Karachi",
     "rating": "4.5"
   },
   {
     "img": "assets/food4.jpeg",
-    "title": "Uncle Boons",
-    "address": "1278 Loving Acres RoadKansas City, MO 64110",
+    "title": "Burger Lab",
+    "address": "Gulshan - e -Hadeed Branch,Karachi",
     "rating": "4.5"
   },
   {
-    "img": "assets/food5.jpeg",
+    "img": "assets/Kolachi.jpg",
     "title": "Kolachi",
-    "address": "1278 Loving Acres RoadKansas City, MO 64110",
+    "address": "M.A Jinnah Road,Karachi",
     "rating": "4.1"
   },
   {
     "img": "assets/food6.jpeg",
     "title": "Burger King",
-    "address": "1278 Loving Acres RoadKansas City, MO 64110",
+    "address": "Power House,Karachi",
     "rating": "1.2"
   },
   {
     "img": "assets/food7.jpeg",
     "title": "Ginsoy",
-    "address": "1278 Loving Acres RoadKansas City, MO 64110",
+    "address": "Power House,Karachi",
     "rating": "4.5"
   },
   {
     "img": "assets/food8.jpeg",
     "title": "Subway",
-    "address": "1278 Loving Acres RoadKansas City, MO 64110",
+    "address": "Tower , Custom House,Karachi",
     "rating": "5"
   },
   {
@@ -58,7 +58,7 @@ List restaurants = [
 List myreviews = [
   {
     "title": "Fahad",
-    "Review": "Good Hai",
+    "Review": "Dinner is good for Biryani",
     "rating": 3.5
   },
   {

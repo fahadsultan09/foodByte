@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/order_card.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:foodbyte/localization/localization.dart';
+import 'package:foodbyte/screens/Checkout.dart';
 class OrderPage extends StatefulWidget {
   @override
   _OrderPageState createState() => _OrderPageState();
@@ -60,9 +60,129 @@ class _OrderPageState extends State<OrderPage> {
       //   ],
       // ),
       body: ListView.builder(
-          itemCount: 5,
+          itemCount: L.length,
           itemBuilder: (BuildContext context, int index) {
-            return OrderCard();
+            return Card(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0xFFD3D3D3), width: 2.0),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              width: 45.0,
+              height: 73.0,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                ),
+                child: Column(
+                  children: <Widget>[
+                    InkWell(
+                        onTap: () {},
+                        child: Icon(Icons.keyboard_arrow_up,
+                            color: Color(0xFFD3D3D3))),
+                    Text(
+                      "0",
+                      style: TextStyle(fontSize: 18.0, color: Colors.grey),
+                    ),
+                    InkWell(
+                        onTap: () {},
+                        child: Icon(Icons.keyboard_arrow_down,
+                            color: Color(0xFFD3D3D3))),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 20.0,
+            ),
+            Container(
+              height: 60.0,
+              width: 60.0,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/food12.jpg"),
+                      fit: BoxFit.cover),
+                  borderRadius: BorderRadius.circular(35.0),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black,
+                        blurRadius: 5.0,
+                        offset: Offset(0.0, 2.0))
+                  ]),
+            ),
+            SizedBox(
+              width: 20.0,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                L[index]["name"],
+                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 5.0),
+                Text(
+                  "Rs "+L[index]["price"].toString(),
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.orangeAccent,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 5.0),
+                Container(
+                  height: 25.0,
+                  width: 120.0,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Text("Chicken",
+                              style: TextStyle(
+                                  color: Color(0xFFD3D3D3),
+                                  fontWeight: FontWeight.bold)),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              "x",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Spacer(),
+            GestureDetector(
+              onTap: () {},
+              child: Icon(
+                Icons.cancel,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
           },
       ),
       bottomNavigationBar: _buildTotalContainer(),
@@ -145,7 +265,7 @@ class _OrderPageState extends State<OrderPage> {
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                "22.5",
+                "220.5",
                 style: TextStyle(
                     color: Color(0xFF6C6D6D),
                     fontSize: 16.0,
@@ -159,6 +279,7 @@ class _OrderPageState extends State<OrderPage> {
           GestureDetector(
             onTap: () {
               _showNotificationWithoutSound();
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Checkout()));
             },
             child: Container(
               height: 30.0,
@@ -204,3 +325,15 @@ Future _showNotificationWithoutSound() async {
 }
   
 }
+List L = [
+{
+  "name":"Grilled Chicken",
+  "price":10,
+},
+{
+  "name":"Chicken Biryani",
+  "price":100,
+},
+
+
+];
