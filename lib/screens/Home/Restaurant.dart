@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:foodbyte/screens/Orders/order_page.dart';
+import 'package:toast/toast.dart';
 
 class Restaurant extends StatefulWidget {
 
@@ -15,8 +17,11 @@ class Restaurant extends StatefulWidget {
 
 class _RestaurantState extends State<Restaurant> {
   Map restaurant;
-   var isSelected = false;
-  Color mycolor=Colors.white;
+  //  List _test;
+  var list_name = new List();
+  var mycolor=Colors.white;
+  Color _color = Colors.red;
+
   void initState() {
       super.initState();
   Timer.run(() {
@@ -59,7 +64,11 @@ class _RestaurantState extends State<Restaurant> {
 }
 
   _RestaurantState(this.restaurant);
+  
 
+ 
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,151 +81,88 @@ class _RestaurantState extends State<Restaurant> {
             pinned: true, 
             flexibleSpace: FlexibleSpaceBar(
               
-              centerTitle: true,
-              title: Text(restaurant["title"],style: TextStyle(color: Colors.black,fontStyle: FontStyle.italic ),),
+              // centerTitle: true,
+              // // title: Text(restaurant["title"],style: TextStyle(color: Colors.black,fontStyle: FontStyle.italic ),),
               background: Image.asset(restaurant["img"],fit:BoxFit.cover,),
               
             ),
           ),
           SliverFillRemaining(
             
-            child: ListView.builder(
-              itemCount: item.length,
-              itemBuilder: (BuildContext context, int index) {
-
-                return cardy(index);
-              },
+            child: Container(
+              child: FutureBuilder(
+                  future: Firestore.instance.collection(restaurant["title"]).getDocuments(),
+                  builder: buildVerifiedMedicines,
+              ),
             ),
             )
         ],
       ),
     ); 
   }
-  
-}
-int c = 0;
+  Widget buildVerifiedMedicines(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
 
-class cardy extends StatefulWidget {
-
-  int i;
-  cardy(this.i);
-  @override
-  _cardyState createState() => new _cardyState(i);
-}
-
-class _cardyState extends State<cardy> {
-
-  int index=0;
-  _cardyState(this.index);
-
-  var isSelected = false;
-  var mycolor=Colors.white;
-  Color _color = Colors.red;
-  int i = 0;
-  @override
-  Widget build(BuildContext context) {
-    Map it = item[index];
-    return new Card(
-      color: Colors.white,
+    int i = 0;
+    if (snapshot.hasData) {
+        return ListView.builder(
+            itemCount: snapshot.data.documents.length,
+            itemBuilder: (context, index) {
+                  var isSelected = false;
+                  var c = Colors.black;
+                DocumentSnapshot user = snapshot.data.documents[index];
+                list_name.insert(index,Colors.white);     
+                
+                return new Card(
+      color: list_name[index],
       child: new Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
         new ListTile(
             selected: isSelected,
             leading: CircleAvatar(
                          radius: 30.0,
-                         backgroundImage: AssetImage('assets/food12.jpg'),
+                         backgroundImage: AssetImage('assets/background.jpg'),
                        ),
-                       title: Text(it["name"],style: TextStyle(fontSize: 25,color: Colors.black,),),
-                       subtitle: Text("Rs 100",style: TextStyle(fontSize: 20.0,color: Colors.black),),
-            trailing: ClipOval(
-          child: Container(
-            color: _color,
-            height: 30.0, // height of the button
-            width: 30.0, // width of the button
-            child: Center(child: Text(i.toString(),style: TextStyle(fontWeight: FontWeight.bold),)),
-          ),
-        ),
+                       title: Text(user.data["Name"],style: TextStyle(fontSize: 25,color: c,),),
+                       subtitle: Text("Rs. "+user.data["Price"],style: TextStyle(fontSize: 20.0,color: Colors.black),),
+        //     trailing: ClipOval(
+        //   child: Container(
+        //     color: _color,
+        //     height: 30.0, // height of the button
+        //     width: 30.0, // width of the button
+        //     // child: Center(child: Text(list_name[index].toString(),style: TextStyle(fontWeight: FontWeight.bold),)),
+        //   ),
+        // ),
       
             onTap: (){
               
-                setState(() {
-                  //  mycolor=Colors.white;
-                 if(i!=0){
-                    i--;
-                 }
-                 if(i==0){
-                   _color = Colors.red;
-                 }
-                 
-
-                });
+              Toast.show(user.data["Name"]+" Deleted to the cart", context,duration: Toast.LENGTH_LONG,gravity: Toast.BOTTOM,backgroundColor: Colors.red);
+              Firestore.instance.collection("Orders").document(user.documentID).delete();
               
             },
             onLongPress: (){
-               setState(() {
-      if (isSelected) {
-        // mycolor=Colors.white;
-        isSelected = false;
-        
-      } else {
-        // mycolor=Colors.grey[300];
-        // isSelected = true;
-        _color = Colors.green;
-        i++;
-        print(it["name"]);
-        // mySecret.add(it["name"]);
-        // L.add(item[index]);
-        setState(() {
-          L.add(item[index]);
-        });
-        
-      }
-    });
-            } // what should I put here,
+              
+              setState(() {
+                
+                  c= Colors.green[200];
+              Toast.show(user.data["Name"]+" Added to the cart", context,duration: Toast.LENGTH_LONG,gravity: Toast.BOTTOM,backgroundColor: Colors.green);
+              Firestore.instance.collection("Orders").document(user.documentID).setData(user.data);
+              });
+            
+            } 
             )
       ]),
     );
-  }
-  List<String> mySecret;
-  void toggleSelection() {
-    setState(() {
-      if (isSelected) {
-        mycolor=Colors.white;
-        isSelected = false;
-      } else {
-        mycolor=Colors.grey[300];
-        isSelected = true;
-      }
-    });
-  }
+    
+            },
+        );
+    } else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasData ){
+        // Handle no data
+        return Center(
+            child: Text("No Restaurants found."),
+        );
+    } else {
+        // Still loading
+        return Center(child: CircularProgressIndicator());
+    }
 }
-
-List item = [
-{
-  "name":"Grilled Chicken",
-  "price":120,
-},
-{
-  "name":"Chicken Biryani",
-  "price":100,
-},
-{
-  "name":"Moist Handi Chicken",
-  "price":500,
-},
-{
-  "name":"Chicken Tikka",
-  "price":200,
-},
-{
-  "name":"Tikka Seekh",
-  "price":200,
-},
-{
-  "name":"Tikka Roll",
-  "price":200,
-},
-{
-  "name":"Chick Roll",
-  "price":200,
+  
 }
-];

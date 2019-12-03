@@ -141,7 +141,7 @@ class AppLocalizations {
     return Intl.message('Proceed To Checkout', name: 'checkout');
   }
   String get consumer{
-    return Intl.message('Consumer',name:'consumer');
+    return Intl.message('Customers',name:'customers');
   }
   String get orders{
     return Intl.message('Orders',name: 'orders');
