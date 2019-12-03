@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:foodbyte/screens/Profile.dart';
-import 'package:foodbyte/screens/favorite_page.dart';
-import 'package:foodbyte/screens/order_page.dart';
-import 'package:foodbyte/screens/review.dart';
-import 'home.dart';
-import 'package:foodbyte/screens/signIn_page.dart';
+import 'package:foodbyte/screens/Favourite/favorite_page.dart';
+import 'package:foodbyte/screens/Home/home.dart';
+import 'package:foodbyte/screens/Orders/order_page.dart';
+import 'package:foodbyte/screens/Profile/Profile.dart';
+
 
 
 class MainScreen extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/Utils/restaurants.dart';
-import 'package:foodbyte/widgets/slide_item.dart';
+import 'package:foodbyte/screens/Home/slide_item.dart';
 
 class FavoritePage extends StatefulWidget{
   @override

@@ -1,38 +1,32 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:foodbyte/Utils/categories.dart';
 import 'package:foodbyte/Utils/restaurants.dart';
-import 'package:foodbyte/screens/Restaurant.dart';
-import 'package:foodbyte/screens/scratchCard.dart';
-import 'package:foodbyte/screens/test%20copy.dart';
-import 'package:foodbyte/widgets/slide_item.dart';
-// import 'package:speech_recognition/speech_recognition.dart';
-import 'package:foodbyte/screens/signIn_page.dart';
+import 'package:foodbyte/screens/Home/Restaurant.dart';
+import 'package:foodbyte/screens/Home/scratchCard.dart';
+import 'package:foodbyte/screens/Home/Testcopy.dart';
+import 'package:foodbyte/screens/Login/signIn_page.dart';
+import 'package:foodbyte/screens/Home/slide_item.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:translator/translator.dart';
 import 'package:foodbyte/Utils/helper.dart';
 import 'package:foodbyte/localization/localization.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-import 'package:foodbyte/Utils/models.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-Future<Post> fetchPost() async {
-  final response =
-      await http.get('https://jsonplaceholder.typicode.com/posts/1');
+// Future<Post> fetchPost() async {
+//   final response =
+//       await http.get('https://jsonplaceholder.typicode.com/posts/1');
 
-  if (response.statusCode == 200) {
-    // If the call to the server was successful, parse the JSON.
-    return Post.fromJson(json.decode(response.body));
-  } else {
-    // If that call was not successful, throw an error.
-    throw Exception('Failed to load post');
-  }
-}
+//   if (response.statusCode == 200) {
+//     // If the call to the server was successful, parse the JSON.
+//     return Post.fromJson(json.decode(response.body));
+//   } else {
+//     // If that call was not successful, throw an error.
+//     throw Exception('Failed to load post');
+//   }
+// }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
   // final TextEditingController _searchControl = new TextEditingController();
@@ -41,7 +35,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
   // SpeechRecognition _speechRecognition;
   // bool isAvailable = false;
   // bool isListening = false;
-  Future<Post> post;
+  // Future<Post> post;
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   // void initSpeedRecognition() {
@@ -74,11 +68,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
     super.initState();
     // initSpeedRecognition();
     initNotifications();
-    post = fetchPost();
+    // post = fetchPost();
     // _transalate();
   }
 
-  Future onSelectNotification(String payload) {
+  Future<void> onSelectNotification(String payload)async{
     debugPrint("payload : $payload");
     showDialog(
       context: context,
@@ -88,6 +82,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
       ),
     );
   }
+  Color mycolor1 = Colors.grey;
+  Color mycolor2 = Colors.grey[300];
 
   @override
   Widget build(BuildContext context) {
@@ -125,20 +121,39 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
 
           children: <Widget>[
             new RaisedButton(
+            color: mycolor1,
             padding: EdgeInsets.only(right: 10.0,left: 10.0),
 
               onPressed: () {
                 this.setState(() {
+                  if(mycolor1== Colors.grey[300]){
+                      mycolor1=Colors.grey;
+                      mycolor2 = Colors.grey[300];
+                  }
+                  else{
+                    mycolor1=Colors.grey[300];
+                    mycolor2=Colors.grey;
+                  }
                   helper.onLocaleChanged(new Locale("en"));
                 });
               },
               child: new Text("English"),
             ),
             new RaisedButton(
+              color: mycolor2,
           padding: EdgeInsets.only(right: 10.0,left: 10.0),
 
               onPressed: () {
                 this.setState(() {
+                  if(mycolor2== Colors.grey[300]){
+                      mycolor2=Colors.grey;
+                      mycolor1 = Colors.grey[300];
+
+                  }
+                  else{
+                    mycolor2=Colors.grey[300];
+                    mycolor1=Colors.grey;
+                  }
                   helper.onLocaleChanged(new Locale("ur"));
                 });
               },
@@ -157,6 +172,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
             new ListTile(
                 title: new Text(AppLocalizations.of(context).signout),
                 onTap: () {
+                  FirebaseAuth auth = FirebaseAuth.instance;
+                  auth.signOut();
                   Navigator.of(context).pop();
                   Navigator.of(context).push(new MaterialPageRoute(
                       builder: (BuildContext context) => new SignInPage()));

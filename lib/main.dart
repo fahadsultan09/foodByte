@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:foodbyte/WelcomeScreen.dart';
-import 'package:foodbyte/screens/main_screen.dart';
 import 'package:foodbyte/localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:foodbyte/screens/signIn_page.dart';
-import 'package:foodbyte/screens/switch_task.dart';
-import 'package:foodbyte/screens/my_home.dart';
+import 'package:foodbyte/screens/Main/main_screen.dart';
 import 'Utils/Const.dart';
 import 'Utils/helper.dart';
 
@@ -65,10 +61,13 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: Constants.appName,
       theme: isDark ? Constants.darkTheme : Constants.lightTheme,
-      home: SignInPage(),
+      // home: SignInPage(),
+      home: MainScreen(),
       // home: MyHomePage(onLocaleChange: onLocaleChange),
-      // home: WelcomeScreen(),
-    );
+      // home: SignUpPage(),
+
+      
+    ); 
   }
 }
 

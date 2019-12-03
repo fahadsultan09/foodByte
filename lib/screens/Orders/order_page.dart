@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:foodbyte/localization/localization.dart';
-import 'package:foodbyte/screens/Checkout.dart';
+import 'package:foodbyte/screens/Orders/Checkout.dart';
 class OrderPage extends StatefulWidget {
   @override
   _OrderPageState createState() => _OrderPageState();
@@ -326,14 +326,14 @@ Future _showNotificationWithoutSound() async {
   
 }
 List L = [
-{
-  "name":"Grilled Chicken",
-  "price":10,
-},
-{
-  "name":"Chicken Biryani",
-  "price":100,
-},
+// {
+//   "name":"Grilled Chicken",
+//   "price":10,
+// },
+// {
+//   "name":"Chicken Biryani",
+//   "price":100,
+// },
 
 
 ];

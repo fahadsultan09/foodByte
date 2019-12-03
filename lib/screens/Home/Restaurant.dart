@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodbyte/screens/order_page.dart';
+import 'dart:async';
 
+import 'package:foodbyte/screens/Orders/order_page.dart';
 
 class Restaurant extends StatefulWidget {
 
@@ -16,7 +17,47 @@ class _RestaurantState extends State<Restaurant> {
   Map restaurant;
    var isSelected = false;
   Color mycolor=Colors.white;
-  
+  void initState() {
+      super.initState();
+  Timer.run(() {
+    _showAlertDialog(context);
+  });
+       
+      }
+
+      void _showAlertDialog(BuildContext context) async {
+
+  // set up the buttons
+  // Widget cancelButton = FlatButton(
+  //   child: Text("Cancel"),
+  //   onPressed:  () {},
+  // );
+  Widget continueButton = FlatButton(
+    child: Text("Ok"),
+    onPressed:  () {
+      Navigator.of(context, rootNavigator: true).pop('dialog');
+
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Caution"),
+    content: Text("Please Long Tap to add item and \n Single Tap to remove on the Food Items"),
+    actions: [
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
   _RestaurantState(this.restaurant);
 
   @override
@@ -121,8 +162,13 @@ class _cardyState extends State<cardy> {
         // isSelected = true;
         _color = Colors.green;
         i++;
+        print(it["name"]);
+        // mySecret.add(it["name"]);
         // L.add(item[index]);
-        L.add(item[index]);
+        setState(() {
+          L.add(item[index]);
+        });
+        
       }
     });
             } // what should I put here,
@@ -130,7 +176,7 @@ class _cardyState extends State<cardy> {
       ]),
     );
   }
-
+  List<String> mySecret;
   void toggleSelection() {
     setState(() {
       if (isSelected) {

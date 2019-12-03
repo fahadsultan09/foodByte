@@ -32,8 +32,10 @@ dependencies:
   cupertino_icons: ^0.1.2
   speech_recognition: ^0.3.0
   scratcher:
-  http: ^0.12.0+2
-  translator: ^0.1.2
+  # http: ^0.12.0+2
+  # translator: ^0.1.2
+  mailer: ^3.0.4
+  toast: ^0.1.5
   flutter_rating_bar: ^3.0.0
   cloud_firestore:
   firebase_auth:
@@ -82,6 +84,8 @@ flutter:
     - assets/cm4.jpeg
     - assets/background.jpg
     - assets/RDJ.png
+  module:
+    androidX: true
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

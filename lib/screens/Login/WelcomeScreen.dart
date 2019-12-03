@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:foodbyte/screens/Login/signIn_page.dart';
+import 'package:foodbyte/screens/Login/signup_page.dart';
 import 'dart:ui';
 
-import 'package:foodbyte/screens/main_screen.dart';
-import 'package:foodbyte/screens/signIn_page.dart';
-import 'package:foodbyte/screens/signup_page.dart';
+import 'package:foodbyte/screens/Main/main_screen.dart';
+
 import 'package:foodbyte/sharedPreferences.dart';
 
 
